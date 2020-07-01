@@ -24,7 +24,7 @@ require_once('quizDB.php')
 			while($row = $result->fetch(PDO::FETCH_ASSOC)) {
 				$_SESSION['user']=$_POST['email'];
 				echo $_SESSION['user'];
-                header("location:mainpage.php");
+                header("location:menu.php");
 			}
 			// if($result->fetch(PDO::FETCH_ASSOC)) {
 			// 	echo "aaaaa <br/>";
@@ -42,7 +42,7 @@ require_once('quizDB.php')
 		<div class="container">
 			<h2>Вписване:</h2>
 
-			<label for="email"><b>Емейл адрес</b></label>
+			<label for="email"><b>Е-mail адрес</b></label>
 			<input type="email" name="email" required>
 
 			<label for="password"><b>Парола</b></label>
