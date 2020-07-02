@@ -22,13 +22,8 @@ const onErrorMessage = (message) =>
   (document.getElementById("onError").innerHTML +=
     "<b>Error:</b> " + message + "<br/>");
 
-const onSuccessMessage = () =>
-  (document.getElementById("onSuccess").innerHTML +=
-    "<b>Login successful!</b>");
-
 const clearPreviousErrors = () => {
   document.getElementById("onError").innerHTML = "";
-  document.getElementById("onSuccess").innerHTML = "";
 };
 
 const fieldLength = (input, nameOfInput, minLength, maxLength) => {
@@ -38,13 +33,6 @@ const fieldLength = (input, nameOfInput, minLength, maxLength) => {
       `${value} should be between ${minLength} and ${maxLength} symbols long!`
     );
   }
-};
-
-const fieldNameLength = (input) => {
-  input.length > 50 &&
-    onErrorMessage(
-      `First and last name field should be maximum 50 symbols long!`
-    );
 };
 
 const validate = async (event) => {
@@ -73,5 +61,8 @@ const validate = async (event) => {
   }
   !emailValidation(email) && onErrorMessage("Invalid email!");
 
-  document.getElementById("onError").innerHTML === "" && onSuccessMessage();
+  document.getElementById("onError").innerHTML === "";
 };
+
+const form = document.getElementById("form");
+form.addEventListener(validate);

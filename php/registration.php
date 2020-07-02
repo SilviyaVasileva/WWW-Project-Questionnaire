@@ -49,13 +49,13 @@ require_once('quizDB.php');
 			<h2>Регистрация:</h2>
 
 			<input id="username" type="text" name="username" placeholder="Потребителско име" required>
+			
+			<input id="password" type="password" name="password" placeholder="Парола" required>
+			<input id="confirm-password" type="password" name="confirm_password" placeholder="Потвърди парола" required>
 
 			<input id="email" type="email" name="email" placeholder="Email" required>
 
-			<input id="password" type="password" name="password" placeholder="Парола" required>
-
-			<input id="confirm-password" type="password" name="confirm_password" placeholder="Потвърди парола" required>
-
+			
 			<input id="FN" type="number" name="FN" placeholder="Факултетен номер">
 
 			<h3>Вид потребител:</h3>
@@ -68,7 +68,6 @@ require_once('quizDB.php');
 			<p><a href="login.php">Влез в профил</a></p>
 			<div class="messages">
 				<p id="onError"></p>
-				<p id="onSuccess"></p>
   			</div>
 
   			<script src="../js/registration.js"></script>
