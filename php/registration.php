@@ -44,24 +44,19 @@ require_once('quizDB.php');
 </div>
 
 <div class="reg_form">
-	<form action="registration.php" method="post">
+	<form action="registration.php" method="post" id="form">
 		<div class="container">
 			<h2>Регистрация:</h2>
 
-			<label for="username"><b>Потребителско име</b></label>
-			<input type="text" name="username" required>
+			<input id="username" type="text" name="username" placeholder="Потребителско име" required>
 
-			<label for="email"><b>Емейл адрес</b></label>
-			<input type="email" name="email" required>
+			<input id="email" type="email" name="email" placeholder="Email" required>
 
-			<label for="password"><b>Парола</b></label>
-			<input type="password" name="password" required>
+			<input id="password" type="password" name="password" placeholder="Парола" required>
 
-			<label for="confirm_password"><b>Потвърди парола</b></label>
-			<input type="password" name="confirm_password" required>
+			<input id="confirm-password" type="password" name="confirm_password" placeholder="Потвърди парола" required>
 
-			<label for="FN"><b>Факултетен номер</b></label>
-			<input type="number" name="FN">
+			<input id="FN" type="number" name="FN" placeholder="Факултетен номер">
 
 			<h3>Вид потребител:</h3>
 			<label for="userType"><b>Студент</b></label>
@@ -71,8 +66,15 @@ require_once('quizDB.php');
 
 			<input type="submit" name="createUser" value="Регистрирай се">
 			<p><a href="login.php">Влез в профил</a></p>
+			<div class="messages">
+				<p id="onError"></p>
+				<p id="onSuccess"></p>
+  			</div>
+
+  			<script src="../js/registration.js"></script>
 		</div>
 	</form>
+	
 </div>
 
 </body>
