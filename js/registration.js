@@ -36,7 +36,6 @@ const fieldLength = (input, nameOfInput, minLength, maxLength) => {
 };
 
 const validate = async (event) => {
-  event.preventDefault();
   clearPreviousErrors();
 
   const fields = {
@@ -61,8 +60,11 @@ const validate = async (event) => {
   }
   !emailValidation(email) && onErrorMessage("Invalid email!");
 
-  document.getElementById("onError").innerHTML === "";
+  if(document.getElementById("onError").innerHTML === "") { return true; }
+
+  else { event.preventDefault(); return false; }
+
 };
 
 const form = document.getElementById("registration-form");
-form.addEventListener(validate);
+form.addEventListener("submit", validate);

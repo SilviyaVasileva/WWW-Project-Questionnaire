@@ -30,16 +30,9 @@ require_once('quizDB.php');
 				$stmtinsert = $conn->prepare($sql);
 				$result = $stmtinsert->execute([$username, $email, sha1($password), $fn, $utype]);
 				if($result) {
-					echo "Registered! <br />";
-				}
-				else {
-					echo "Wrong input! <br />";
+					header("Location: menu.php");
 				}
 		 	}
-
-			
-		// 	echo $username."<br />";
-
 		} 
 	?>
 </div>
