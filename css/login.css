@@ -3,7 +3,8 @@ body {
     padding: 0;
     font-family: 'Times New Roman', Times, serif;
     background: url('../img/Questionnaire.jpg') no-repeat;
-    background-size: 85rem;
+    background-size: 100vw;
+    width: 100vw;
 }
 
 div form {
