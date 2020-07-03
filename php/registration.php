@@ -31,6 +31,7 @@ require_once('quizDB.php');
 				$result = $stmtinsert->execute([$username, $email, sha1($password), $fn, $utype]);
 				if($result) {
 					header("Location: menu.php");
+					//this is for the redirection. Need to create a session
 				}
 		 	}
 		} 
