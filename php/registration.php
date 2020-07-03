@@ -5,6 +5,7 @@ require_once('quizDB.php');
 <html>
 <head>
 	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="../css/registration.css">
 	<title>Регистрация</title>
 </head>
 <body>
@@ -44,8 +45,7 @@ require_once('quizDB.php');
 </div>
 
 <div class="reg_form">
-	<form action="registration.php" method="post" id="form">
-		<div class="container">
+	<form action="registration.php" method="post" id="registration-form">
 			<h2>Регистрация:</h2>
 
 			<input id="username" type="text" name="username" placeholder="Потребителско име" required>
@@ -69,12 +69,8 @@ require_once('quizDB.php');
 			<div class="messages">
 				<p id="onError"></p>
   			</div>
-
   			<script src="../js/registration.js"></script>
-		</div>
-	</form>
-	
+	</form>	
 </div>
-
 </body>
 </html>

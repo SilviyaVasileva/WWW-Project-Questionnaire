@@ -64,5 +64,5 @@ const validate = async (event) => {
   document.getElementById("onError").innerHTML === "";
 };
 
-const form = document.getElementById("form");
-form.addEventListener(validate);
+const form = document.getElementById("registration-form");
+form.addEventListener("submit",validate);

@@ -5,6 +5,7 @@ require_once('quizDB.php')
 <html>
 <head>
 	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="../css/login.css">
 	<title>Вписване</title>
 </head>
 <body>
@@ -38,20 +39,18 @@ require_once('quizDB.php')
 </div>
 
 <div class="login_form">
-	<form action="login.php" method="post">
-		<div class="container">
+	<form id="login-form" action="login.php" method="post">
 			<h2>Вписване:</h2>
 
-			<label for="email"><b>Е-mail адрес</b></label>
-			<input type="email" name="email" required>
+			<input id="email" type="email" name="email" placeholder="Email" required>
 
-			<label for="password"><b>Парола</b></label>
-			<input type="password" name="password" required>
-
+			<input id="password" type="password" name="password" placeholder="Парола" required>
+			
 			<input type="submit" name="login" value="Влез">
-		</div>
+			<br>
+			<a id="register" href="registration.php?registartion">Регистрирай се</a>
 	</form>
 </div>
-<a href="registration.php?registartion">Регистрирай се</a>
+
 </body>
 </html>

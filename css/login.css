@@ -1,0 +1,48 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Times New Roman', Times, serif;
+    background: url('../img/Questionnaire.jpg') no-repeat;
+    background-size: 85rem;
+}
+
+div form {
+    text-align: center;
+    width: 30vw;
+    background-color: #7A2615;
+    padding: 5px 0 15px 0;
+    margin: 15% 35%;
+    opacity: 60%;
+    border-radius: 8px;
+}
+
+input {
+    background-color: #C78273;
+    padding: 5px 10px;
+    width: 80%;
+    margin: 5px 0;
+    opacity: 120%;
+}
+
+input[type="submit"] {
+    background-color: #107A52;
+    color: #C78273;
+    width: 50%;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+input[type="submit"]:hover{
+    background-color: #C78273;
+    color:#107A52;
+}
+
+div form a {
+    text-decoration: none;
+    color: #5AC79D;
+    text-align: right;
+}
+
+div form h2 {
+    color: #5AC79D;
+}
