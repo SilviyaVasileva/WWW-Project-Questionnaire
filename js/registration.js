@@ -65,4 +65,4 @@ const validate = async (event) => {
 };
 
 const form = document.getElementById("registration-form");
-form.addEventListener("submit",validate);
+form.addEventListener(validate);
