@@ -9,7 +9,7 @@ require_once('quizDB.php');
 </head>
 <body>
 
-<div class="phpReg">
+<div class="phpTest">
 	<?php
 		session_start();
 		// echo $_SESSION['id'];
@@ -53,13 +53,13 @@ require_once('quizDB.php');
 
 			 	// Get question id
 
-			 	$sql_qid = "SELECT * FROM `queston` WHERE description = '".$question."'";
+			 	$sql_qid = "SELECT * FROM `question` WHERE description = '".$question."'";
 		 		$result_q = $conn->query($sql_qid) or die("failed!");
 
 		 		$q_id = 0;
 
 		 		while ($row_q = $result_q->fetch(PDO::FETCH_ASSOC)) {
-		 			$q_id = row_q['id'];
+		 			$q_id = $row_q['id'];
 		 		}
 
 		 		// create answers
@@ -71,19 +71,19 @@ require_once('quizDB.php');
 
 				$sql_create_answ1 = "INSERT INTO `answer` (question_id, answer_text) VALUES (?,?)";
 				$stmtinsert_answ1 = $conn->prepare($sql_create_answ1);
-				$result_answ1 = $stmtinsert_answ1->execute([$question_id, $answ1]);
+				$result_answ1 = $stmtinsert_answ1->execute([$q_id, $answ1]);
 
 				$sql_create_answ2 = "INSERT INTO `answer` (question_id, answer_text) VALUES (?,?)";
 				$stmtinsert_answ2 = $conn->prepare($sql_create_answ2);
-				$result_answ2 = $stmtinsert_answ2->execute([$question_id, $answ2]);
+				$result_answ2 = $stmtinsert_answ2->execute([$q_id, $answ2]);
 
 				$sql_create_answ3 = "INSERT INTO `answer` (question_id, answer_text) VALUES (?,?)";
 				$stmtinsert_answ3 = $conn->prepare($sql_create_answ3);
-				$result_answ3 = $stmtinsert_answ3->execute([$question_id, $answ3]);
+				$result_answ3 = $stmtinsert_answ3->execute([$q_id, $answ3]);
 
 				$sql_create_answ4 = "INSERT INTO `answer` (question_id, answer_text) VALUES (?,?)";
 				$stmtinsert_answ4 = $conn->prepare($sql_create_answ4);
-				$result_answ4 = $stmtinsert_answ4->execute([$question_id, $answ4]);
+				$result_answ4 = $stmtinsert_answ4->execute([$q_id, $answ4]);
 
 
 

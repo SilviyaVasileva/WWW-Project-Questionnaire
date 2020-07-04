@@ -30,6 +30,19 @@ require_once('quizDB.php');
 				$stmtinsert = $conn->prepare($sql);
 				$result = $stmtinsert->execute([$username, $email, sha1($password), $fn, $utype]);
 				if($result) {
+					session_start();
+
+					$sql_u = "SELECT * FROM `user` WHERE email = '".$email."' and password = '".sha1($password)."'";
+				 	$result_u = $conn->query($sql_u) or die("failed!");
+
+					while($row = $result_u->fetch(PDO::FETCH_ASSOC)) {
+						$_SESSION['email']=$row['email'];
+						$_SESSION['user']=$row['username'];
+						$_SESSION['id']=$row['id'];
+						$_SESSION['type']=$row['type'];
+		                header("location:menu.php");
+					}
+
 					header("Location: menu.php");
 					//this is for the redirection. Need to create a session
 				}
