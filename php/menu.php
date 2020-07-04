@@ -17,7 +17,9 @@ require_once('quizDB.php');
 			echo "hiiiii <br/>";
 			echo $_SESSION['user']."<br/>";
 			echo '<a href="../php/logout.php?logout">Изход</a><br/>';
-			echo '<a href="../php/addTest.php?addTest">Добави тест</a>';
+			echo '<a href="../php/addTest.php?addTest">Добави тест</a><br/>';
+			echo '<a href="../php/addQuiz.php?addQuiz">Добави анкета</a><br/>';
+
 		}
 		else{
 			echo "neeee TT <br/>";
