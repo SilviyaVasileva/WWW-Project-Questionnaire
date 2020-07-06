@@ -5,6 +5,7 @@ require_once('quizDB.php');
 <html>
 <head>
 	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="../css/menu.css">
 	<title>Регистрация</title>
 </head>
 <body>
@@ -54,24 +55,18 @@ require_once('quizDB.php');
 	?>
 </div>
 <div class="quiz-and-questionnare">
-	<script type="text/javascript">var quiz_arr = <?php echo json_encode($q_rows, JSON_UNESCAPED_UNICODE); ?>;
-	var questionnarie_arr = <?php echo json_encode($t_rows, JSON_UNESCAPED_UNICODE); ?>;
+	<script type="text/javascript">var questionnarie_arr = <?php echo json_encode($q_rows, JSON_UNESCAPED_UNICODE); ?>;
+	var quiz_arr = <?php echo json_encode($t_rows, JSON_UNESCAPED_UNICODE); ?>;
 	</script>
-	<script src="../js/menu.js"></script>
-	<div class="questionarrie">
+	<script src="../js/menu.js" defer></script>
+	<div class="questionnarie">
 		<h3>Анкети</h3>
-		<div class="questionarrie">
-			<p id="first-questionarrie"></p>
-			<p id="second-questionarrie"></p>
-			<p id="third-questionarrie"></p>
+		<div id="questionnarie" class="questionnarie">
 		</div>
 	</div>
 	<div class="quiz">
 		<h3>Тестове</h3>
-		<div class="quiz">
-			<p id="first-quiz"></p>
-			<p id="second-quiz"></p>
-			<p id="third-quiz"></p>
+		<div id="quiz" class="quiz">
 		</div>
 	</div>
 </div>
