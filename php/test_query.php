@@ -4,7 +4,7 @@ require_once('quizDB.php');
 <?php 
 	
 	
-		$test_id = 7;
+		$test_id = 5;
 		$sql_test = "SELECT * FROM `test` JOIN `question` ON `test`.id = `question`.test_id JOIN `answer` ON `question`.id = `answer`.question_id WHERE `test`.id = ".$test_id;
 		// $stmtinsert = $conn->prepare($sql_test);
 		$result = $conn->query($sql_test) or die("NOOOOOOOO");
