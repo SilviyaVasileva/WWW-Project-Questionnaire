@@ -15,13 +15,16 @@ require_once('quizDB.php');
 
 		if(isset($_SESSION['user'])) {
 			// if the user is logged shows all tests
-			$sql_tests = "SELECT id, test_name FROM `test` WHERE type = 'test' AND creator_id = ".$_SESSION['id'];
+			$sql_tests = "SELECT id, test_name FROM `test` WHERE type = 'test'";
 		 	$result_tests = $conn->query($sql_tests) or die("failed!");
 
 		 	// if the user is logged shows all quizzes
-			$sql_quiz = "SELECT id, test_name FROM `test` WHERE type = 'quiz' AND creator_id = ".$_SESSION['id'];
-		 	$result_quiz = $conn->query($sql_quiz) or die("failed!");
-
+			$sql_quiz = "SELECT id, test_name FROM `test` WHERE type = 'quiz'";
+			 $result_quiz = $conn->query($sql_quiz) or die("failed!");
+			 
+			// $print1 = $result_tests->fetchall(PDO::FETCH_ASSOC);
+			// var_dump($print1);
+			// echo '<br>';
 		 	// array for json
 		 	$q_rows = array();
 		 	$t_rows = array();
@@ -50,13 +53,27 @@ require_once('quizDB.php');
 		}
 	?>
 </div>
-<div class="questionnare">
-	<script type="text/javascript">var q_arr = <?php echo json_encode($q_rows, JSON_UNESCAPED_UNICODE); ?>;
-	var t_arr = <?php echo json_encode($t_rows, JSON_UNESCAPED_UNICODE); ?>;
-	console.log(q_arr);
-	console.log(t_arr);
-
-</script>
+<div class="quiz-and-questionnare">
+	<script type="text/javascript">var quiz_arr = <?php echo json_encode($q_rows, JSON_UNESCAPED_UNICODE); ?>;
+	var questionnarie_arr = <?php echo json_encode($t_rows, JSON_UNESCAPED_UNICODE); ?>;
+	</script>
+	<script src="../js/menu.js"></script>
+	<div class="questionarrie">
+		<h3>Анкети</h3>
+		<div class="questionarrie">
+			<p id="first-questionarrie"></p>
+			<p id="second-questionarrie"></p>
+			<p id="third-questionarrie"></p>
+		</div>
+	</div>
+	<div class="quiz">
+		<h3>Тестове</h3>
+		<div class="quiz">
+			<p id="first-quiz"></p>
+			<p id="second-quiz"></p>
+			<p id="third-quiz"></p>
+		</div>
+	</div>
 </div>
 
 
