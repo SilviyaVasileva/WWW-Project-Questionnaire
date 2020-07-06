@@ -5,52 +5,44 @@ require_once('quizDB.php');
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Създаване на тест</title>
+	<title>Създаване на анкета</title>
 </head>
 <body>
 
-<div class="phpTest">
+<div class="phpQuiz">
 	<?php
 		session_start();
-		// check if the user is logged in
 		if(isset($_SESSION['user'])) {
 			echo '<a href="../php/logout.php?logout">Изход</a><br/>';
 			echo '<a href="../php/menu.php?menu">Меню</a>';
+
 			if ($_SESSION['type'] == 'lector') {
-				// if the user is logged and its lector in shows the form
 
-
-				$sql_tests = "SELECT * FROM `test` WHERE type = 'test' AND creator_id = ".$_SESSION['id'];
+				$sql_tests = "SELECT * FROM `test` WHERE type like '%quiz%' AND creator_id = ".$_SESSION['id'];
 			 	$result_tests = $conn->query($sql_tests) or die("failed!");
 
-				if (isset($_POST['createTest'])) {
-			 		// create a test in db
+				if (isset($_POST['createQuiz'])) {
 				 	$testName = $_POST['testName'];
-			 		$sql = "INSERT INTO test (test_name, creator_id) VALUES (?,?)";
+			 		$sql = "INSERT INTO test (test_name, creator_id, type) VALUES (?,?,?)";
 					$stmtinsert = $conn->prepare($sql);
-					$result = $stmtinsert->execute([$testName, $_SESSION['id']]);
+					$result = $stmtinsert->execute([$testName, $_SESSION['id'], 'quiz']);
 					if($result) {
-			            header("location:addTest.php");	
+						header("location:addQuiz.php");
 					}
 					else {
 						echo "Wrong input! <br />";
 					}
 				}
-				if (isset($_POST['createQuestion'])) {
-
-
+				if (isset($_POST['addQuestion'])) {
 			 		// Create a question
 			 		$test_id = $_POST['test_names'];
-			 		// echo $test_id;
 				 	$question = $_POST['question'];
-				 	$points = $_POST['points'];
-				 	$correct_answer = $_POST['correct_answer'];
 
-				 	echo $test_id."  въпрос ".$question."  точки ".$points."  отговор ".$correct_answer;
+				 	echo $test_id."  въпрос ".$question;
 
 					 	$sql_create_q = "INSERT INTO `question` (test_id, description, points, correct_answer_id) VALUES (?,?,?,?)";
 						$stmtinsert_question = $conn->prepare($sql_create_q);
-						$result_create_q = $stmtinsert_question->execute([$test_id, $question, $points, $correct_answer]);
+						$result_create_q = $stmtinsert_question->execute([$test_id, $question, 'NULL', 'NULL']);
 
 
 				 	// Get question id
@@ -86,25 +78,27 @@ require_once('quizDB.php');
 					$sql_create_answ4 = "INSERT INTO `answer` (question_id, answer_number, answer_text) VALUES (?,?,?)";
 					$stmtinsert_answ4 = $conn->prepare($sql_create_answ4);
 					$result_answ4 = $stmtinsert_answ4->execute([$q_id, 4, $answ4]);
-
 				}
 			}
 		}
+
+			
+		// 	echo $username."<br />";
 
 	?>
 </div>
 
 <div class="test_form">
-	<form action="addTest.php" method="post">
-		<h2>Добави тест:</h2>
+	<form action="addQuiz.php" method="post">
+		<h2>Добави Анкета:</h2>
 
-		<label for="testName"><b>Заглавие на теста</b></label>
+		<label for="testName"><b>Заглавие на Анкетата</b></label>
 		<input type="text" name="testName" required>
 
-		<input type="submit" name="createTest" value="Добави">
+		<input type="submit" name="createQuiz" value="Добави">
 
 	</form>
-	<form action="addTest.php" method="post">
+	<form action="addQuiz.php" method="post">
 		<h2>Добави въпрос:</h2>
 
 		<select name="test_names">
@@ -116,8 +110,8 @@ require_once('quizDB.php');
 
 		<label for="question"><b><br/>Въпрос</b></label>
 		<input type="text" name="question" required>
-		<label for="points"><b><br/>Точки </b></label>
-		<input id="points" type="number" name="points" placeholder="Точки за въпроса">
+
+		<!-- <input id="points" type="number" name="points" placeholder="Точки за въпроса"> -->
 		<label for="answ1"><b><br/>Отговор 1 </b></label>
 		<input type="text" name="answ1" required>
 		<label for="answ2"><b><br/>Отговор 2</b></label>
@@ -127,15 +121,15 @@ require_once('quizDB.php');
 		<label for="answ4"><b><br/>Отговор 4</b></label>
 		<input type="text" name="answ4" required>
 
-		<select name="correct_answer">
+		<!-- select name="correct_answer">
 			<option value="1">1</option>
 			<option value="2">2</option>
 			<option value="3">3</option>
 			<option value="4">4</option>
-		</select>
+		</select> -->
 
 
-		<input type="submit" name="createQuestion" value="Добави">
+		<input type="submit" name="addQuestion" value="Добави">
 	</form>
 </div>
 

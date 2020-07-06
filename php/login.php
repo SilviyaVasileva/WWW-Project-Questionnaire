@@ -23,8 +23,11 @@ require_once('quizDB.php')
 		 	$result = $conn->query($sql) or die("failed!");
 
 			while($row = $result->fetch(PDO::FETCH_ASSOC)) {
-				$_SESSION['user']=$_POST['email'];
-				echo $_SESSION['user'];
+				$_SESSION['email']=$row['email'];
+				$_SESSION['user']=$row['username'];
+				$_SESSION['id']=$row['id'];
+				$_SESSION['type']=$row['type'];
+				// echo $_SESSION['user'];
                 header("location:menu.php");
 			}
 			// if($result->fetch(PDO::FETCH_ASSOC)) {

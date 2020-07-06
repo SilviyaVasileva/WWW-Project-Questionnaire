@@ -14,10 +14,15 @@ require_once('quizDB.php');
 		session_start();
 
 		if(isset($_SESSION['user'])) {
-			echo "hiiiii <br/>";
-			echo $_SESSION['user']."<br/>";
+			// echo "hiiiii <br/>";
+			// echo $_SESSION['user']."<br/>";
 			echo '<a href="../php/logout.php?logout">Изход</a><br/>';
-			echo '<a href="../php/addTest.php?addTest">Добави тест</a>';
+			if ($_SESSION['type'] == 'lector') {
+				echo '<a href="../php/addTest.php?addTest">Добави тест</a><br/>';
+				echo '<a href="../php/addQuiz.php?addQuiz">Добави анкета</a><br/>';
+			}
+			
+
 		}
 		else{
 			echo "neeee TT <br/>";
