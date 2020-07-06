@@ -2,8 +2,8 @@
 require_once('quizDB.php');
 ?>
 <?php 
-	session_start();
-	if(isset($_SESSION['user'])) {
+	
+	
 		$test_id = 7;
 		$sql_test = "SELECT * FROM `test` JOIN `question` ON `test`.id = `question`.test_id JOIN `answer` ON `question`.id = `answer`.question_id WHERE `test`.id = ".$test_id;
 		// $stmtinsert = $conn->prepare($sql_test);
@@ -13,7 +13,8 @@ require_once('quizDB.php');
 		while($row = $result->fetch(PDO::FETCH_ASSOC)) {
 			$rows[] = $row;
 		}
-		// print json_encode($rows, JSON_UNESCAPED_UNICODE);
+
+		//print json_encode($rows, JSON_UNESCAPED_UNICODE);
 		// var_dump($row);
 			
-	}
+	
