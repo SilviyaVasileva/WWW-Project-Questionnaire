@@ -1,0 +1,42 @@
+:root {
+    --grid-cols: 1;
+    --grid-rows: 1;
+}
+
+#questionnarie,
+#quiz {
+    display: grid;
+    grid-gap: 1em;
+    grid-template-rows: repeat(var(--grid-rows), 1fr);
+    grid-template-columns: repeat(var(--grid-cols), 1fr);
+    margin: 0 1em;
+}
+
+#quiz{
+    margin-bottom: 30px;
+}
+
+#questionnarie .grid-item {
+    background-image: url('../img/Question.jpg');
+    background-repeat: no-repeat;
+    background-size: 210px;
+    background-position: top;
+    background-position-x: center;
+    padding-top: 160px;
+}
+
+#quiz .grid-item {
+    background-image: url('../img/test.jpg');
+    background-repeat: no-repeat;
+    background-size: 250px;
+    background-position: top;
+    background-position-x: center;
+    padding-top: 150px;
+}
+
+.grid-item {
+    padding-bottom: 0;
+    border: 1px solid #ddd;
+    text-align: center;
+    
+}
