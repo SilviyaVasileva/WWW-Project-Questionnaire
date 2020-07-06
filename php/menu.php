@@ -15,12 +15,23 @@ require_once('quizDB.php');
 
 		if(isset($_SESSION['user'])) {
 			// if the user is logged shows all tests
-			$sql_tests = "SELECT * FROM `test` WHERE type = 'test' AND creator_id = ".$_SESSION['id'];
+			$sql_tests = "SELECT id, test_name FROM `test` WHERE type = 'test' AND creator_id = ".$_SESSION['id'];
 		 	$result_tests = $conn->query($sql_tests) or die("failed!");
 
 		 	// if the user is logged shows all quizzes
-			$sql_quiz = "SELECT * FROM `test` WHERE type = 'quiz' AND creator_id = ".$_SESSION['id'];
+			$sql_quiz = "SELECT id, test_name FROM `test` WHERE type = 'quiz' AND creator_id = ".$_SESSION['id'];
 		 	$result_quiz = $conn->query($sql_quiz) or die("failed!");
+
+		 	// array for json
+		 	$q_rows = array();
+		 	$t_rows = array();
+
+		 	while($q_row = $result_quiz->fetch(PDO::FETCH_ASSOC)) {
+				$q_rows[] = $q_row;
+			}
+			while($t_row = $result_tests->fetch(PDO::FETCH_ASSOC)) {
+				$t_rows[] = $t_row;
+			}
 
 			echo '<a href="../php/logout.php?logout">Изход</a><br/>';
 			if ($_SESSION['type'] == 'lector') {
@@ -39,19 +50,15 @@ require_once('quizDB.php');
 		}
 	?>
 </div>
-<div class="buttons">
-<form method="POST">
-	<h2>Тестове:</h2>
-	<?php 
-	while ($row_test = $result_tests->fetch(PDO::FETCH_ASSOC)):;?>
-	<button class='test_id' name='test_id' value="<?php echo $row_test['id'] ?>"><?php echo $row_test['test_name'];?></button>
-	<?php endwhile;?>
-	<h2>Анкети:</h2>
-	<?php 
-	while ($row_quiz = $result_quiz->fetch(PDO::FETCH_ASSOC)):;?>
-	<button class='test_id' name='test_id' value="<?php echo $row_quiz['id'] ?>"><?php echo $row_quiz['test_name'];?></button>
-	<?php endwhile;?>
-</form>
+<div class="questionnare">
+	<script type="text/javascript">var q_arr = <?php echo json_encode($q_rows, JSON_UNESCAPED_UNICODE); ?>;
+	var t_arr = <?php echo json_encode($t_rows, JSON_UNESCAPED_UNICODE); ?>;
+	console.log(q_arr);
+	console.log(t_arr);
+
+</script>
 </div>
+
+
 </body>
 </html>
