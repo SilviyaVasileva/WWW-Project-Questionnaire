@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 01, 2020 at 06:14 AM
+-- Generation Time: Jul 06, 2020 at 08:45 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.4
 
@@ -30,8 +30,27 @@ SET time_zone = "+00:00";
 CREATE TABLE `answer` (
   `id` int(10) UNSIGNED NOT NULL,
   `question_id` int(10) UNSIGNED NOT NULL,
+  `answer_number` int(10) UNSIGNED NOT NULL,
   `answer_text` text COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `answer`
+--
+
+INSERT INTO `answer` (`id`, `question_id`, `answer_number`, `answer_text`) VALUES
+(5, 8, 1, 'am I?'),
+(6, 8, 2, 'am I doing?'),
+(7, 8, 3, 'do you want?'),
+(8, 8, 4, 'to do?'),
+(9, 9, 1, 'b'),
+(10, 9, 2, 'bb'),
+(11, 9, 3, 'bbb'),
+(12, 9, 4, '3'),
+(13, 10, 1, 'много зле'),
+(14, 10, 2, 'зле'),
+(15, 10, 3, 'добре'),
+(16, 10, 4, 'много добре');
 
 -- --------------------------------------------------------
 
@@ -43,9 +62,18 @@ CREATE TABLE `question` (
   `id` int(10) UNSIGNED NOT NULL,
   `test_id` int(10) UNSIGNED NOT NULL,
   `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `points` float NOT NULL DEFAULT 0,
-  `correct_answer_id` int(10) UNSIGNED NOT NULL
+  `points` float DEFAULT 0,
+  `correct_answer_id` int(10) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `question`
+--
+
+INSERT INTO `question` (`id`, `test_id`, `description`, `points`, `correct_answer_id`) VALUES
+(8, 5, 'What', 1, 4),
+(9, 5, 'aaa', 3, 3),
+(10, 7, 'Как си?', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -56,8 +84,22 @@ CREATE TABLE `question` (
 CREATE TABLE `test` (
   `id` int(10) UNSIGNED NOT NULL,
   `creator_id` int(10) UNSIGNED NOT NULL,
-  `test_name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL
+  `test_name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` varchar(4) COLLATE utf8mb4_unicode_ci DEFAULT 'test'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `test`
+--
+
+INSERT INTO `test` (`id`, `creator_id`, `test_name`, `type`) VALUES
+(1, 2, 'TEST ADD TEST 1', 'test'),
+(2, 2, 'TEST ADD TEST 2', 'test'),
+(3, 1, 'TEST ADD TEST 3', 'test'),
+(4, 1, 'az', 'test'),
+(5, 6, 'TEST ADD TEST 4', 'test'),
+(7, 6, 'quiz1', 'quiz'),
+(8, 6, 'quiz2', 'quiz');
 
 -- --------------------------------------------------------
 
@@ -79,7 +121,10 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `email`, `password`, `FN`, `type`) VALUES
-(1, 'az1', 'az1@az.az', 'c0c248675fd0979d381885404d9e94c88896d2fd', 1, 'student');
+(1, 'az1', 'az1@az.az', 'c0c248675fd0979d381885404d9e94c88896d2fd', 1, 'student'),
+(2, 'az2', 'az2@az.az', 'a8f342808cd697cf9cbdf7f49fb2deee862703fc', 2, 'student'),
+(4, 'Silvijav1', 'sisi@si.si', 'c9362e9cc9677199868ec71811bb76edaa676615', 2, 'student'),
+(6, 'az3AZ3', 'az3@az.az', '131610388719b43dd387864db6e5f43b4e55719d', 0, 'lector');
 
 -- --------------------------------------------------------
 
@@ -163,25 +208,25 @@ ALTER TABLE `user_test`
 -- AUTO_INCREMENT for table `answer`
 --
 ALTER TABLE `answer`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `question`
 --
 ALTER TABLE `question`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `test`
 --
 ALTER TABLE `test`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `user_answer`
