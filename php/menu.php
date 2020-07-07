@@ -39,14 +39,14 @@ require_once('quizDB.php');
 
 			echo '<a href="../php/logout.php?logout">Изход</a><br/>';
 			if ($_SESSION['type'] == 'lector') {
-				echo '<a href="../php/addTest.php?addTest">Добави тест</a><br/>';
-				echo '<a href="../php/addQuiz.php?addQuiz">Добави анкета</a><br/>';
+				echo '<a href="../php/add-quiz.php?add-quiz">Добави тест</a><br/>';
+				echo '<a href="../php/add-questionnarie.php?add-questionnarie">Добави анкета</a><br/>';
 			}
 			if(isset($_POST['test_id'])){
 				// echo "HEREEEEE <br/>";
 				// echo $_POST['test_id'];
 				$_SESSION['test_id'] = $_POST['test_id'];
-				header("location:get_test.php");
+				header("location:get-test.php");
 			}
 			// else{
 				// echo "not HEREEE <bt/>";
