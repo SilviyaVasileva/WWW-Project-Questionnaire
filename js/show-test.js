@@ -47,11 +47,12 @@ const selectAnswer = (event) => {
 
 const showQuestion = (questIndex) => {
   questionElement.innerText = jArray[questIndex].description;
-  console.log(jArray[questIndex].description);
   for (let ind = questIndex; ind < questIndex + 4; ind++) {
     if (jArray[questIndex].question_id == jArray[ind].question_id) {
       const button = document.createElement("button");
       button.innerText = jArray[ind].answer_text;
+      button.value=jArray[ind].id;
+      button.name="answer";
       button.classList.add("btn");
       button.addEventListener("click", selectAnswer);
       answersElements.appendChild(button);
