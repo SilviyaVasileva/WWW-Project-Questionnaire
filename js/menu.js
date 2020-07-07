@@ -12,7 +12,8 @@ const makeGridQuestionnarie = (rows, cols) => {
     pos < rows * cols, ind < questionnarie_arr.length;
     pos++, ind++
   ) {
-    let cell = document.createElement("div");
+    let cell = document.createElement("button");
+    cell.value = questionnarie_arr[ind].id;
     cell.innerText = questionnarie_arr[ind].test_name;
     questionnariePlace.appendChild(cell).className = "grid-item";
   }
@@ -26,14 +27,12 @@ const makeGridQuiz = (rows, cols) => {
     pos < rows * cols, ind < quiz_arr.length;
     pos++, ind++
   ) {
-    let cell = document.createElement("div");
+    let cell = document.createElement("button");
+    cell.value = quiz_arr[ind].id;
     cell.innerText = quiz_arr[ind].test_name;
     quizPlace.appendChild(cell).className = "grid-item";
   }
 };
-
-const SelectedOne = (event) => {
-}
 
 makeGridQuestionnarie(3, 4);
 makeGridQuiz(3, 4);
