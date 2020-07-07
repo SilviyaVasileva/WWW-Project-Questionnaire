@@ -89,7 +89,7 @@ require_once('quizDB.php');
 	?>
 </div>
 
-<div class="questionnarie_form">
+<div class="questionnarie-form">
 	<form class="add-new-questionnarie" action="add-questionnarie.php" method="post">
 		<h2>Добави Анкета:</h2>
 		<label for="questionnarie-name"><b>Заглавие на Анкетата</b></label>
