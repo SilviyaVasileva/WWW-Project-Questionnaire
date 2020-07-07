@@ -1,0 +1,72 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Times New Roman', Times, serif;
+    background: url('../img/Questionnaire.jpg') no-repeat;
+    background-size: 100vw;
+}
+
+.quiz-form,
+.questionnarie_form {
+    margin-top: 30px;
+}
+
+div form {
+    width: 40vw;
+    background-color: #7A2615;
+    padding: 5px 0 15px 0;
+    border-radius: 8px;
+}
+
+div form h2 {
+    text-align: center;
+}
+
+input {
+    background-color: #C78273;
+    padding: 5px 10px;
+    width: 70%;
+    float: right;
+    margin-right: 15px;
+}
+
+label {
+    float: left;
+    margin-left: 15px;
+}
+
+label[for="quiz-name"],
+label[for="questionnarie-name"] {
+    margin-left: 35%;
+}
+
+select[name="existing-quiz-names"],
+select[name="existing-questionnarie-names"]{
+    width: 250px;
+    margin-left:25%;
+}
+
+input[name="create-quiz"],
+input[name="create-questionnarie"],
+input[name="create-question"] {
+    float: none;
+    margin-left: 15%;
+}
+
+input[name="quiz-name"],
+input[name="questionnarie-name"] {
+    float: none;
+    margin-left: 13%;
+}
+
+.add-new-quiz,
+.add-new-questionnarie {
+    float: left;
+    margin-left: 80px;
+    margin-top: 130px;
+}
+
+.add-question {
+    float: right;
+    margin-right: 80px;
+}
