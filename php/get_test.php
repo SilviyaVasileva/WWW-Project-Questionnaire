@@ -15,6 +15,9 @@ require_once('test_query.php');
 <!-- answer id ; creator-id - user id ; test-name ; test - type(test-test,anketa-quiz) ; test - id ; 
     question descr ; points; curr ans id - checks if true or false - returns the answ num ; quest id ; 
     answ num ; answ text-->
+<?php 
+	echo '<a href="../php/menu.php?menu">Меню</a>';
+?>
 <script type="text/javascript">var jArray = <?php echo json_encode($rows, JSON_UNESCAPED_UNICODE); ?>; console.log(jArray);
 </script>
 <script type="text/javascript" src="../js/show-test.js" defer></script>

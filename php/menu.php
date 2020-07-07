@@ -43,10 +43,14 @@ require_once('quizDB.php');
 				echo '<a href="../php/addQuiz.php?addQuiz">Добави анкета</a><br/>';
 			}
 			if(isset($_POST['test_id'])){
-				echo $_POST['test_id'];
+				// echo "HEREEEEE <br/>";
+				// echo $_POST['test_id'];
 				$_SESSION['test_id'] = $_POST['test_id'];
 				header("location:get_test.php");
 			}
+			// else{
+				// echo "not HEREEE <bt/>";
+			// }
 
 		}
 		else{
@@ -59,6 +63,7 @@ require_once('quizDB.php');
 	var quiz_arr = <?php echo json_encode($t_rows, JSON_UNESCAPED_UNICODE); ?>;
 	</script>
 	<script src="../js/menu.js" defer></script>
+	<form action="menu.php" method="post">
 	<div class="questionnarie">
 		<h3>Анкети</h3>
 		<div id="questionnarie" class="questionnarie">
@@ -70,6 +75,7 @@ require_once('quizDB.php');
 		</div>
 	</div>
 </div>
+</form>
 
 
 </body>

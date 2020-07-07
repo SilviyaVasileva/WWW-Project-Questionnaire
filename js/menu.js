@@ -14,6 +14,7 @@ const makeGridQuestionnarie = (rows, cols) => {
   ) {
     let cell = document.createElement("button");
     cell.value = questionnarie_arr[ind].id;
+    cell.name = "test_id";
     cell.innerText = questionnarie_arr[ind].test_name;
     questionnariePlace.appendChild(cell).className = "grid-item";
   }
@@ -29,6 +30,7 @@ const makeGridQuiz = (rows, cols) => {
   ) {
     let cell = document.createElement("button");
     cell.value = quiz_arr[ind].id;
+    cell.name = "test_id";
     cell.innerText = quiz_arr[ind].test_name;
     quizPlace.appendChild(cell).className = "grid-item";
   }
