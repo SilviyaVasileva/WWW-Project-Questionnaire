@@ -22,6 +22,7 @@ require_once('test-query.php');
 </script>
 <script type="text/javascript" src="../js/show-test.js" defer></script>
 <div class="wrapper">
+    <div class="container">
         <div id="question-container" class="hide">
             <div id="question">Въпрос</div>
             <div id="answer-btns" class="btn-grid">
@@ -36,6 +37,7 @@ require_once('test-query.php');
             <button id="prev-btn" class="prev-btn btn hide">Предишен</button>
             <button id="next-btn" class="next-btn btn hide">Следващ</button>
         </div>
+</div>
 </div>
 </body>
 </html>
