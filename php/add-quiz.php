@@ -5,7 +5,7 @@ require_once('quizDB.php');
 <html>
 <head>
 	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="../css/quiz.css">
+	<link rel="stylesheet" type="text/css" href="../css/quiz-and-questionnarie.css">
 	<title>Създаване на тест</title>
 </head>
 <body>
@@ -37,11 +37,11 @@ require_once('quizDB.php');
 						echo "Wrong input! <br />";
 					}
 				}
-				if (isset($_POST['createQuestion'])) {
+				if (isset($_POST['create-question'])) {
 
 
 			 		// Create a question
-			 		$test_id = $_POST['test_names'];
+			 		$test_id = $_POST['existing-quiz-names'];
 			 		// echo $test_id;
 				 	$question = $_POST['question'];
 				 	$points = $_POST['points'];
@@ -99,41 +99,53 @@ require_once('quizDB.php');
 	<form class="add-new-quiz" action="add-quiz.php" method="post">
 		<h2>Добави тест:</h2>
 		<label for="quiz-name"><b>Заглавие на теста</b></label>
+		<br>
 		<input type="text" name="quiz-name" required>
+		<br><br>
 		<input type="submit" name="create-quiz" value="Добави">
+		<br>
 	</form>
 
 	<form class="add-question" action="add-quiz.php" method="post">
 		<h2>Добави въпрос:</h2>
+		<br>
 		<select name="existing-quiz-names">
 			<?php 
 			while ($row_test = $result_tests->fetch(PDO::FETCH_ASSOC)):;?>
 			<option value="<?php echo $row_test['id'] ?>"><?php echo $row_test['test_name'];?></option>
 			<?php endwhile;?>
 		</select>
-
-		<label for="question"><b><br/>Въпрос</b></label>
+		<br><br>
+		<label for="question"><b>Въпрос</b></label>
 		<input type="text" name="question" required>
-		<label for="points"><b><br/>Точки </b></label>
+		<br><br>
+		<label for="points"><b>Точки</b></label>
 		<input id="points" type="number" name="points" placeholder="Точки за въпроса">
-		<label for="answ1"><b><br/>Отговор 1 </b></label>
+		<br><br>
+		<label for="answ1"><b>Отговор 1</b></label>
 		<input type="text" name="answ1" required>
-		<label for="answ2"><b><br/>Отговор 2</b></label>
+		<br><br>
+		<label for="answ2"><b>Отговор 2</b></label>
 		<input type="text" name="answ2" required>
-		<label for="answ3"><b><br/>Отговор 3</b></label>
+		<br><br>
+		<label for="answ3"><b>Отговор 3</b></label>
 		<input type="text" name="answ3" required>
-		<label for="answ4"><b><br/>Отговор 4</b></label>
+		<br><br>
+		<label for="answ4"><b>Отговор 4</b></label>
 		<input type="text" name="answ4" required>
+		<br><br>
+		<label><b>Правилен отговор на въпроса:</b>
 
 		<select name="correct_answer">
 			<option value="1">1</option>
 			<option value="2">2</option>
 			<option value="3">3</option>
 			<option value="4">4</option>
-		</select>
+		</select></label>
+<br><br>
 
-
-		<input type="submit" name="createQuestion" value="Добави">
+		<input type="submit" name="create-question" value="Добави">
+		<br>
 	</form>
 </div>
 
