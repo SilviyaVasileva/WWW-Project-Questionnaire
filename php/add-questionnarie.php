@@ -34,7 +34,7 @@ require_once('quizDB.php');
 						echo "Wrong input! <br />";
 					}
 				}
-				if (isset($_POST['add-question'])) {
+				if (isset($_POST['create-question'])) {
 			 		// Create a question
 			 		$testId = $_POST['existing-questionnarie-names'];
 				 	$question = $_POST['question'];
