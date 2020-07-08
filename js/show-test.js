@@ -8,7 +8,7 @@ const questionElement = document.getElementById("question");
 
 const showQuestions = (event) => {
   console.log("currIndex", currIndex);
-  console.log('endIndex',endIndex)
+  console.log("endIndex", endIndex);
   for (let ind = 0; ind < answersElements.length; ind++) {
     answersElements[ind].addEventListener("click", (event) => {
       const SelectedButton = event.target;
@@ -20,7 +20,7 @@ const showQuestions = (event) => {
       if (startIndex < currIndex) {
         prevButton.classList.remove("hide");
       }
-      if (endIndex-1  == currIndex) {
+      if (endIndex - 1 == currIndex) {
         finishButton.classList.remove("hide");
       }
       event.preventDefault();
@@ -28,6 +28,7 @@ const showQuestions = (event) => {
   }
 };
 showQuestions();
+
 // const startButton = document.getElementById("startBtn");
 // const nextButton = document.getElementById("nextBtn");
 // const prevButton = document.getElementById("prevBtn");
