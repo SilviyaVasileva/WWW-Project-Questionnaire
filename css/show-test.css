@@ -17,11 +17,11 @@ body {
   margin: 0;
   line-height: 1;
 
-  
+
   background-color: hsl(var(--hue), 100%, 75%);
 }
 
-.menu-page-ref{
+.menu-page-ref {
   display: block;
   position: absolute;
   justify-content: left;
@@ -36,7 +36,7 @@ body {
   height: 50vw;
 }
 
-.container{
+.container {
   width: 800px;
   max-width: 80%;
   background-color: white;
@@ -66,22 +66,20 @@ body {
 
 .btn:hover {
   background-color: hsl(var(--hue), 100%, 40%);
-  color:black;
+  color: black;
 }
 
-.startBtn,
 .nextBtn,
-.prevBtn {
+.prevBtn,
+.finishBtn {
   font-size: 1.5rem;
   padding: 10px 20px;
 }
 
-.nextBtn{
-  margin-left:35%;
-}
-
-.nextBtn{
+.nextBtn,
+.finishBtn {
   text-align: left;
+  margin-left: 35%;
 }
 
 .controls {
