@@ -86,7 +86,7 @@ require_once('test-query.php');
             // echo $_SESSION['userAnswers'][2]."<br/>";
 
 
-            // header("location:menu.php");
+            header("location:menu.php");
         }
 
 
