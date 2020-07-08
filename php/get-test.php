@@ -105,7 +105,10 @@ require_once('test-query.php');
         echo '<a href="../php/menu.php?menu">Меню</a>';
     ?>
 </div>
-<script type="text/javascript">var jArray = <?php echo json_encode($rows, JSON_UNESCAPED_UNICODE); ?>;
+<script type="text/javascript">
+	var startIndex = <?php echo $startIndex/4;?>;
+	var currIndex = <?php echo $questionIndex/4;?>;
+	var endIndex = <?php echo $endIndex/4;?>;
 </script> 
 <script type="text/javascript" src="../js/show-test.js" defer></script>
 <!-- <form> -->
