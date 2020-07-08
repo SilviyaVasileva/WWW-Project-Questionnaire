@@ -32,6 +32,10 @@ const showQuestions = (event) => {
     });
   }
 };
+
+finishButton.addEventListener('click',()=>{
+  window.sessionStorage.clear();
+})
 showQuestions();
 // const startButton = document.getElementById("startBtn");
 // const nextButton = document.getElementById("nextBtn");
