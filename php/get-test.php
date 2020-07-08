@@ -12,7 +12,7 @@ require_once('test-query.php');
     <title>Document</title>
 </head>
 <body>
-<!-- answer id ; creator-id - user id ; test-name ; test - type(test-test,anketa-quiz) ; test - id ; 
+<!-- answer id ; creator-id - user id ; test-name ; test - testType(test-test,anketa-quiz) ; test - id ; 
     question descr ; points; curr ans id - checks if true or false - returns the answ num ; quest id ; 
     answ num ; answ text-->
 <?php 

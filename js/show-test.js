@@ -46,11 +46,11 @@ const selectAnswer = (event) => {
 };
 
 const showQuestion = (questIndex) => {
-  questionElement.innerText = jArray[questIndex].description;
+  questionElement.innerText = jArray[questIndex].questionDescription;
   for (let ind = questIndex; ind < questIndex + 4; ind++) {
-    if (jArray[questIndex].question_id == jArray[ind].question_id) {
+    if (jArray[questIndex].questionId == jArray[ind].questionId) {
       const button = document.createElement("button");
-      button.innerText = jArray[ind].answer_text;
+      button.innerText = jArray[ind].answerDescription;
       button.value=jArray[ind].id;
       button.name="answer";
       button.classList.add("btn");

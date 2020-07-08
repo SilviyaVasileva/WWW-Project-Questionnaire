@@ -4,10 +4,10 @@ require_once('quizDB.php');
 <?php 
 
 	session_start();
-	if(isset($_SESSION['test_id'])){
-		$test_id = $_SESSION['test_id'];
+	if(isset($_SESSION['testId'])){
+		$testId = $_SESSION['testId'];
 
-		$sql_test = "SELECT * FROM `test` JOIN `question` ON `test`.id = `question`.test_id JOIN `answer` ON `question`.id = `answer`.question_id WHERE `test`.id = ".$test_id;
+		$sql_test = "SELECT * FROM `test` JOIN `question` ON `test`.id = `question`.testId JOIN `answer` ON `question`.id = `answer`.questionId WHERE `test`.id = ".$testId;
 		// $stmtinsert = $conn->prepare($sql_test);
 		$result = $conn->query($sql_test) or die("NOOOOOOOO");
 		$result->execute([]);

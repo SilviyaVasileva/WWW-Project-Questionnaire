@@ -26,7 +26,7 @@ require_once('quizDB.php');
    				// echo $utype."<br />";
 			}
 		 	if($password==$confirm_password) {
-		 		$sql = "INSERT INTO user (username, email, password, FN, type) VALUES (?,?,?,?,?)";
+		 		$sql = "INSERT INTO user (username, email, password, FN, userType) VALUES (?,?,?,?,?)";
 				$stmtinsert = $conn->prepare($sql);
 				$result = $stmtinsert->execute([$username, $email, sha1($password), $fn, $utype]);
 				if($result) {
@@ -39,7 +39,7 @@ require_once('quizDB.php');
 						$_SESSION['email']=$row['email'];
 						$_SESSION['user']=$row['username'];
 						$_SESSION['id']=$row['id'];
-						$_SESSION['type']=$row['type'];
+						$_SESSION['userType']=$row['userType'];
 		                header("location:menu.php");
 					}
 

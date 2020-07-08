@@ -26,7 +26,7 @@ require_once('quizDB.php')
 				$_SESSION['email']=$row['email'];
 				$_SESSION['user']=$row['username'];
 				$_SESSION['id']=$row['id'];
-				$_SESSION['type']=$row['type'];
+				$_SESSION['userType']=$row['userType'];
 				// echo $_SESSION['user'];
                 header("location:menu.php");
 			}
