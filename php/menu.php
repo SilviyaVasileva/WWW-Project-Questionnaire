@@ -15,6 +15,8 @@ require_once('quizDB.php');
 		session_start();
 
 		if(isset($_SESSION['user'])) {
+			$_SESSION['questionId'] = 0;
+
 			// if the user is logged shows all tests
 			$sql_tests = "SELECT id, testName FROM `test` WHERE testType = 'test'";
 		 	$result_tests = $conn->query($sql_tests) or die("failed!");

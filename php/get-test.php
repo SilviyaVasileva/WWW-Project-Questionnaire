@@ -8,12 +8,19 @@ require_once('test-query.php');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../css/show-test.css">
+    <!-- <link rel="stylesheet" type="text/css" href="../css/show-test.css"> -->
     <title>Document</title>
 </head>
 <body>
     <?php 
         $endIndex = count($rows);
+        echo "<br/>";
+        // var_dump($rows);
+        // echo json_encode($rows, JSON_UNESCAPED_UNICODE);
+        echo "<br/>";
+
+
+        echo "endIndex: ".$endIndex."<br/>";
         $testName = "";
 
 
@@ -22,6 +29,7 @@ require_once('test-query.php');
         }
         else {
             
+
             $testName = $rows[0]['testName'];
             $testId = $rows[0]['testId'];
 
@@ -39,11 +47,12 @@ require_once('test-query.php');
                 $_SESSION['questionId'] = $questionIndex - 4;
                 $questionIndex = $_SESSION['questionId'];
             }
-            // echo $questionIndex."<br/>";
+            // goes to the menu
             
-            if($questionIndex >= $startIndex && $questionIndex <= $endIndex - 4) {
-                $questionDescription
- = $rows[$questionIndex]['questionDescription'];
+            echo $questionIndex."<br/>";
+            
+            if($questionIndex >= $startIndex && $questionIndex <= $endIndex - 3) {
+                $questionDescription = $rows[$questionIndex]['questionDescription'];
                 $questionId = $rows[$questionIndex]['questionId'];
                 // echo $questionDescription."<br/>";
                 $answers = array();
@@ -57,8 +66,21 @@ require_once('test-query.php');
             else {
                 echo $questionIndex." ".$endIndex;
             }
+
+            // collect user's answers
+            $userAnswwers = array();
+
+            echo $endIndex."<br/>";
+            for ($i=0; $i < $endIndex / 4; $i++) { 
+                $userAnswwers[] = $i;
+            }
+            var_dump($userAnswwers);
+            echo "<br/>";
         }
-        
+        if(isset($_POST['finishBtn'])){
+            // $_SESSION['questionId'] = 0;
+            header("location:menu.php");
+        }
 
 
 
