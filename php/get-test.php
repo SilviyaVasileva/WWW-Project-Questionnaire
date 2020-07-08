@@ -67,19 +67,26 @@ require_once('test-query.php');
                 echo $questionIndex." ".$endIndex;
             }
 
-            // collect user's answers
-            $userAnswwers = array();
-
-            echo $endIndex."<br/>";
-            for ($i=0; $i < $endIndex / 4; $i++) { 
-                $userAnswwers[] = $i;
+            //
+            //userAnswers
+            //
+            
+            if (isset($_POST['answ'])) {
+                $_SESSION['userAnswers'][$questionIndex/4] = $_POST['answ'];
             }
-            var_dump($userAnswwers);
-            echo "<br/>";
+            // var_dump($_SESSION['userAnswers']);
+            // echo "<br/>";
         }
         if(isset($_POST['finishBtn'])){
             // $_SESSION['questionId'] = 0;
-            header("location:menu.php");
+            // var_dump($_SESSION['userAnswers']);
+            // echo "<br/>";
+            // echo $_SESSION['userAnswers'][0]."<br/>";
+            // echo $_SESSION['userAnswers'][1]."<br/>";
+            // echo $_SESSION['userAnswers'][2]."<br/>";
+
+
+            // header("location:menu.php");
         }
 
 
@@ -98,9 +105,9 @@ require_once('test-query.php');
         echo '<a href="../php/menu.php?menu">Меню</a>';
     ?>
 </div>
-<!-- <script type="text/javascript">var jArray = <?php // echo json_encode($rows, JSON_UNESCAPED_UNICODE); ?>; console.log(jArray);
-</script> -->
-<!-- <script type="text/javascript" src="../js/show-test.js" defer></script> -->
+<script type="text/javascript">var jArray = <?php echo json_encode($rows, JSON_UNESCAPED_UNICODE); ?>;
+</script> 
+<script type="text/javascript" src="../js/show-test.js" defer></script>
 <!-- <form> -->
 
 
@@ -113,7 +120,7 @@ require_once('test-query.php');
 
 
     <div class="container">
-        <div id="questionContainer" class="hide">
+        <div id="questionContainer">
 
             <div id="question"><?php echo $questionDescription;?></div>
             <div id="answerBtns" class="btnGrid">
@@ -125,10 +132,9 @@ require_once('test-query.php');
         </div>
 
         <div class="controls">
-            <button id="startBtn" class="startBtn btn" name="startBtn">Направи теста</button>
             <button id="prevBtn" class="prevBtn btn hide" name="prevBtn">Предишен</button>
             <button id="nextBtn" class="nextBtn btn hide" name="nextBtn">Следващ</button>
-            <button id="finishBtn" class="finishBtn btn" name="finishBtn">Предай теста</button>
+            <button id="finishBtn" class="finishBtn btn hide" name="finishBtn">Предай теста</button>
 
         </div>
 

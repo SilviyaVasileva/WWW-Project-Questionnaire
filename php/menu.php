@@ -15,7 +15,11 @@ require_once('quizDB.php');
 		session_start();
 
 		if(isset($_SESSION['user'])) {
+			
 			$_SESSION['questionId'] = 0;
+			// collect user's answers
+            $userAnswers = array();
+            $_SESSION['userAnswers'] = $userAnswers;
 
 			// if the user is logged shows all tests
 			$sql_tests = "SELECT id, testName FROM `test` WHERE testType = 'test'";
