@@ -23,9 +23,9 @@ require_once('test-query.php');
 <script type="text/javascript" src="../js/show-test.js" defer></script>
 <div class="wrapper">
     <div class="container">
-        <div id="question-container" class="hide">
+        <div id="questionContainer" class="hide">
             <div id="question">Въпрос</div>
-            <div id="answer-btns" class="btn-grid">
+            <div id="answerBtns" class="btnGrid">
                 <button class="btn">Отг 1</button>
                 <button class="btn">Отг 2</button>
                 <button class="btn">Отг 3</button>
@@ -33,9 +33,9 @@ require_once('test-query.php');
             </div>
         </div>
         <div class="controls">
-            <button id="start-btn" class="start-btn btn">Направи теста</button>
-            <button id="prev-btn" class="prev-btn btn hide">Предишен</button>
-            <button id="next-btn" class="next-btn btn hide">Следващ</button>
+            <button id="startBtn" class="startBtn btn">Направи теста</button>
+            <button id="prevBtn" class="prevBtn btn hide">Предишен</button>
+            <button id="nextBtn" class="nextBtn btn hide">Следващ</button>
         </div>
 </div>
 </div>

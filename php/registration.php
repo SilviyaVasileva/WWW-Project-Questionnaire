@@ -5,7 +5,7 @@ require_once('quizDB.php');
 <html>
 <head>
 	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="../css/registration.css">
+	<link rel="stylesheet" type="text/css" href="../css/loginAndRegistration.css">
 	<title>Регистрация</title>
 </head>
 <body>
@@ -17,7 +17,7 @@ require_once('quizDB.php');
 		 	$username = $_POST['username'];
 		 	$email = $_POST['email'];
 		 	$password = $_POST['password'];
-		 	$confirm_password = $_POST['confirm_password'];
+		 	$confirmPassword = $_POST['confirmPassword'];
 		 	$fn = $_POST['FN'];
 		 	$userType = $_POST['userType'];
 		 	$utype = '';
@@ -25,7 +25,7 @@ require_once('quizDB.php');
 		 		$utype = $t;
    				// echo $utype."<br />";
 			}
-		 	if($password==$confirm_password) {
+		 	if($password==$confirmPassword) {
 		 		$sql = "INSERT INTO user (username, email, password, FN, userType) VALUES (?,?,?,?,?)";
 				$stmtinsert = $conn->prepare($sql);
 				$result = $stmtinsert->execute([$username, $email, sha1($password), $fn, $utype]);
@@ -51,18 +51,17 @@ require_once('quizDB.php');
 	?>
 </div>
 
-<div class="reg_form">
-	<form action="registration.php" method="post" id="registration-form">
+<div class="registrationForm">
+	<form action="registration.php" method="post" id="registrationForm">
 			<h2>Регистрация:</h2>
 
 			<input id="username" type="text" name="username" placeholder="Потребителско име" required>
 			
 			<input id="password" type="password" name="password" placeholder="Парола" required>
-			<input id="confirm-password" type="password" name="confirm_password" placeholder="Потвърди парола" required>
+			<input id="confirmPassword" type="password" name="confirmPassword" placeholder="Потвърди парола" required>
 
 			<input id="email" type="email" name="email" placeholder="Email" required>
 
-			
 			<input id="FN" type="number" name="FN" placeholder="Факултетен номер">
 
 			<h3>Вид потребител:</h3>

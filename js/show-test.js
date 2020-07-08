@@ -1,10 +1,10 @@
-const startButton = document.getElementById("start-btn");
-const nextButton = document.getElementById("next-btn");
-const prevButton = document.getElementById("prev-btn");
-const questionContainer = document.getElementById("question-container");
+const startButton = document.getElementById("startBtn");
+const nextButton = document.getElementById("nextBtn");
+const prevButton = document.getElementById("prevBtn");
+const questionContainer = document.getElementById("questionContainer");
 let currentQuestionIndex;
 const questionElement = document.getElementById("question");
-const answersElements = document.getElementById("answer-btns");
+const answersElements = document.getElementById("answerBtns");
 console.log(jArray.length);
 //start the quiz
 startButton.addEventListener("click", startQuiz);

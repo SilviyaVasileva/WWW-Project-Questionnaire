@@ -21,15 +21,6 @@ body {
   background-color: hsl(var(--hue), 100%, 75%);
 }
 
-.container{
-  width: 800px;
-  max-width: 80%;
-  background-color: white;
-  border-radius: 10px;
-  padding: 10px;
-  box-shadow: 0 0 10px 2px;
-}
-
 .menu-page-ref{
   display: block;
   position: absolute;
@@ -45,7 +36,16 @@ body {
   height: 50vw;
 }
 
-.btn-grid {
+.container{
+  width: 800px;
+  max-width: 80%;
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 0 10px 2px;
+}
+
+.btnGrid {
   display: grid;
   grid-template-columns: repeat(2, auto);
   gap: 10px;
@@ -69,18 +69,18 @@ body {
   color:black;
 }
 
-.start-btn,
-.next-btn,
-.prev-btn {
+.startBtn,
+.nextBtn,
+.prevBtn {
   font-size: 1.5rem;
   padding: 10px 20px;
 }
 
-.next-btn{
+.nextBtn{
   margin-left:35%;
 }
 
-.next-btn{
+.nextBtn{
   text-align: left;
 }
 

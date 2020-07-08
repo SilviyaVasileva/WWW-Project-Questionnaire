@@ -10,7 +10,7 @@ require_once('quizDB.php');
 </head>
 <body>
 
-<div class="mainpage">
+<div class="mainPage">
 	<?php
 		session_start();
 
@@ -58,7 +58,7 @@ require_once('quizDB.php');
 		}
 	?>
 </div>
-<div class="quiz-and-questionnare">
+<div class="quizAndQuestionnare">
 	<script type="text/javascript">var questionnarie_arr = <?php echo json_encode($q_rows, JSON_UNESCAPED_UNICODE); ?>;
 	var quiz_arr = <?php echo json_encode($t_rows, JSON_UNESCAPED_UNICODE); ?>;
 	</script>

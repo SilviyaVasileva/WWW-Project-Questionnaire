@@ -22,8 +22,8 @@ require_once('quizDB.php');
 				$sql_tests = "SELECT * FROM `test` WHERE testType like '%quiz%' AND creatorId = ".$_SESSION['id'];
 			 	$result_tests = $conn->query($sql_tests) or die("failed!");
 
-				if (isset($_POST['create-questionnarie'])) {
-				 	$testName = $_POST['questionnarie-name'];
+				if (isset($_POST['createQuestionnarie'])) {
+				 	$testName = $_POST['questionnarieName'];
 			 		$sql = "INSERT INTO test (testName, creatorId, testType) VALUES (?,?,?)";
 					$stmtinsert = $conn->prepare($sql);
 					$result = $stmtinsert->execute([$testName, $_SESSION['id'], 'quiz']);
@@ -34,9 +34,9 @@ require_once('quizDB.php');
 						echo "Wrong input! <br />";
 					}
 				}
-				if (isset($_POST['create-question'])) {
+				if (isset($_POST['createQuestion'])) {
 			 		// Create a question
-			 		$testId = $_POST['existing-questionnarie-names'];
+			 		$testId = $_POST['existingQuestionnarieNames'];
 				 	$question = $_POST['question'];
 
 				 	echo $testId."  въпрос ".$question;
@@ -91,20 +91,20 @@ require_once('quizDB.php');
 	?>
 </div>
 
-<div class="questionnarie-form">
-	<form class="add-new-questionnarie" action="add-questionnarie.php" method="post">
+<div class="questionnarieForm">
+	<form class="addNewQuestionnarie" action="add-questionnarie.php" method="post">
 		<h2>Добави Анкета:</h2>
-		<label for="questionnarie-name"><b>Заглавие на Анкетата</b></label>
+		<label for="questionnarieName"><b>Заглавие на Анкетата</b></label>
 		<br>
-		<input type="text" name="questionnarie-name" required>
+		<input type="text" name="questionnarieName" required>
 		<br><br>
-		<input type="submit" name="create-questionnarie" value="Добави">
+		<input type="submit" name="createQuestionnarie" value="Добави">
 		<br>
 	</form>
-	<form class="add-question" action="add-questionnarie.php" method="post">
+	<form class="addQuestion" action="add-questionnarie.php" method="post">
 		<h2>Добави въпрос:</h2>
 		<br>
-		<select name="existing-questionnarie-names">
+		<select name="existingQuestionnarieNames">
 			<?php 
 			while ($row_test = $result_tests->fetch(PDO::FETCH_ASSOC)):;?>
 			<option value="<?php echo $row_test['id'] ?>"><?php echo $row_test['testName'];?></option>
@@ -136,7 +136,7 @@ require_once('quizDB.php');
 		</select> -->
 
 
-		<input type="submit" name="create-question" value="Добави">
+		<input type="submit" name="createQuestion" value="Добави">
 		<br>
 	</form>
 </div>

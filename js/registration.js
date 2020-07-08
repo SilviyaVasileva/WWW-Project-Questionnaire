@@ -42,7 +42,7 @@ const validate = async (event) => {
     username: document.getElementById("username").value || "",
     email: document.getElementById("email").value || "",
     password: document.getElementById("password").value || "",
-    confirmPassword: document.getElementById("confirm-password").value || "",
+    confirmPassword: document.getElementById("confirmPassword").value || "",
   };
 
   const { username, email, password, confirmPassword } = fields;
@@ -66,5 +66,5 @@ const validate = async (event) => {
 
 };
 
-const form = document.getElementById("registration-form");
+const form = document.getElementById("registrationForm");
 form.addEventListener("submit", validate);
