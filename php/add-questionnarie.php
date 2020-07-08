@@ -23,7 +23,7 @@ require_once('quizDB.php');
 			 	$result_tests = $conn->query($sql_tests) or die("failed!");
 
 				if (isset($_POST['createQuestionnarie'])) {
-				 	$testName = $_POST['questionnarieName'];
+					$testName = $_POST['questionnarieName'];
 			 		$sql = "INSERT INTO test (testName, creatorId, testType) VALUES (?,?,?)";
 					$stmtinsert = $conn->prepare($sql);
 					$result = $stmtinsert->execute([$testName, $_SESSION['id'], 'quiz']);
@@ -39,7 +39,7 @@ require_once('quizDB.php');
 			 		$testId = $_POST['existingQuestionnarieNames'];
 				 	$question = $_POST['question'];
 
-				 	echo $testId."  въпрос ".$question;
+				 	// echo $testId."  въпрос ".$question;
 
 					 	$sql_create_q = "INSERT INTO `question` (testId, questionDescription, points, correctAnswerNumber) VALUES (?,?,?,?)";
 						$stmtinsert_question = $conn->prepare($sql_create_q);
@@ -55,6 +55,7 @@ require_once('quizDB.php');
 
 			 		while ($row_q = $result_q->fetch(PDO::FETCH_ASSOC)) {
 			 			$q_id = $row_q['id'];
+			 			// echo $q_id."<br/>";
 			 		}
 
 			 		// create answers
@@ -63,8 +64,7 @@ require_once('quizDB.php');
 			 		$answ2 = $_POST['answ2'];
 			 		$answ3 = $_POST['answ3'];
 			 		$answ4 = $_POST['answ4'];
-					 echo $answ1 , $answ2, $answ3, $answ4;
-					 echo 'im here';
+
 					$sql_create_answ1 = "INSERT INTO `answer` (questionId, answerNumber, answerDescription) VALUES (?,?,?)";
 					$stmtinsert_answ1 = $conn->prepare($sql_create_answ1);
 					$result_answ1 = $stmtinsert_answ1->execute([$q_id, 1, $answ1]);

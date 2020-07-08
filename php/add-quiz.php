@@ -24,9 +24,9 @@ require_once('quizDB.php');
 				$sql_tests = "SELECT * FROM `test` WHERE testType = 'test' AND creatorId = ".$_SESSION['id'];
 			 	$result_tests = $conn->query($sql_tests) or die("failed!");
 
-				if (isset($_POST['createQuiz'])) {
-			 		// create a test in db
-				 	$testName = $_POST['quizName'];
+				 if (isset($_POST['createQuiz'])) {
+					// create a test in db
+					$testName = $_POST['quizName'];
 			 		$sql = "INSERT INTO test (testName, creatorId) VALUES (?,?)";
 					$stmtinsert = $conn->prepare($sql);
 					$result = $stmtinsert->execute([$testName, $_SESSION['id']]);

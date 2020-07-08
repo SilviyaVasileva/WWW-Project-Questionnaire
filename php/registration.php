@@ -25,8 +25,8 @@ require_once('quizDB.php');
 		 		$utype = $t;
    				// echo $utype."<br />";
 			}
-		 	if($password==$confirmPassword) {
-		 		$sql = "INSERT INTO user (username, email, password, FN, userType) VALUES (?,?,?,?,?)";
+			if($password==$confirmPassword) {
+				$sql = "INSERT INTO user (username, email, password, FN, userType) VALUES (?,?,?,?,?)";
 				$stmtinsert = $conn->prepare($sql);
 				$result = $stmtinsert->execute([$username, $email, sha1($password), $fn, $utype]);
 				if($result) {
