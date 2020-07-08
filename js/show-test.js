@@ -7,36 +7,47 @@ const answersElements = document.getElementsByName("answ");
 const questionElement = document.getElementById("question");
 
 const showQuestions = (event) => {
-  prevButton.classList.remove('hide');
-  nextButton.classList.remove('hide');
-  if (startIndex == currIndex) {
-    prevButton.classList.add("hide");
-  }
-  if (endIndex - 1 == currIndex) {
-    nextButton.classList.add("hide");
-  }
-  if (endIndex - 1 == currIndex) {
-    finishButton.classList.remove("hide");
-  }
+  // prevButton.classList.remove('hide');
+  // nextButton.classList.remove('hide');
+  // if (startIndex == currIndex) {
+  //   prevButton.classList.add("hide");
+  // }
+  // if (endIndex - 1 == currIndex) {
+  //   nextButton.classList.add("hide");
+  // }
+  // if (endIndex - 1 == currIndex) {
+  //   finishButton.classList.remove("hide");
+  // }
 
-  console.log("currIndex", currIndex);
-  console.log("endIndex", endIndex);
-  for (let ind = 0; ind < answersElements.length; ind++) {
-    answersElements[ind].addEventListener("click", (event) => {
-      window.sessionStorage.setItem(currIndex, ind + 1);
-      const SelectedButton = event.target;
-      SelectedButton.style.backgroundColor = "#90EE90";
-      SelectedButton.style.color = "black";
+  // console.log("currIndex", currIndex);
+  // console.log("endIndex", endIndex);
+  // for (let ind = 0; ind < answersElements.length; ind++) {
+  //   answersElements[ind].addEventListener("click", (event) => {
+  //     window.sessionStorage.setItem(currIndex, ind + 1);
+  //     // console.log(window.sessionStorage.getItem(0));
+
+  //     const SelectedButton = event.target;
+  //     SelectedButton.style.backgroundColor = "#90EE90";
+  //     SelectedButton.style.color = "black";
       
-      event.preventDefault();
-    });
-  }
+  //     event.preventDefault();
+  //   });
+  // }
 };
 
-finishButton.addEventListener('click',()=>{
-  window.sessionStorage.clear();
-})
-showQuestions();
+// showQuestions();
+// var storedArray = JSON.parse(sessionStorage.getItem('items'));
+// function passVal(){
+//   var data = {
+//     q-num: 0,
+//     a-num: 1
+//   };
+//   $.post("../php/get-test.php", data);//storedArray);
+// }
+// finishButton.addEventListener('click',passVal);
+// finishButton.addEventListener('click',()=>{
+//   window.sessionStorage.clear();
+// })
 // const startButton = document.getElementById("startBtn");
 // const nextButton = document.getElementById("nextBtn");
 // const prevButton = document.getElementById("prevBtn");

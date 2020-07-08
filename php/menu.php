@@ -27,7 +27,7 @@ require_once('quizDB.php');
 
 		 	// if the user is logged shows all quizzes
 			$sql_quiz = "SELECT id, testName FROM `test` WHERE testType = 'quiz'";
-			 $result_quiz = $conn->query($sql_quiz) or die("failed!");
+			$result_quiz = $conn->query($sql_quiz) or die("failed!");
 			 
 			// $print1 = $result_tests->fetchall(PDO::FETCH_ASSOC);
 			// var_dump($print1);

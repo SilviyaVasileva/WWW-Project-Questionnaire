@@ -47,7 +47,7 @@ require_once('quizDB.php');
 				 	$points = $_POST['points'];
 				 	$correct_answer = $_POST['correct_answer'];
 
-				 	echo $testId."  въпрос ".$question."  точки ".$points."  отговор ".$correct_answer;
+				 	// echo $testId."  въпрос ".$question."  точки ".$points."  отговор ".$correct_answer;
 
 					 	$sql_create_q = "INSERT INTO `question` (testId, questionDescription, points, correctAnswerNumber) VALUES (?,?,?,?)";
 						$stmtinsert_question = $conn->prepare($sql_create_q);

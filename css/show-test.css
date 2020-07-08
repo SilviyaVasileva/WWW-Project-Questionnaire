@@ -77,7 +77,7 @@ body {
 .nextBtn,
 .finishBtn {
   text-align: left;
-  margin-left: 35%;
+  margin: 3%;
 }
 
 .controls {
@@ -86,6 +86,6 @@ body {
   align-items: center;
 }
 
-.hide {
+/*.hide {
   display: none;
-}
+}*/

@@ -73,10 +73,15 @@ require_once('test-query.php');
             
             if (isset($_POST['answ'])) {
                 $_SESSION['userAnswers'][$questionIndex/4] = $_POST['answ'];
+                echo "hereee<br/>";
             }
             // var_dump($_SESSION['userAnswers']);
             // echo "<br/>";
         }
+        
+
+        // echo $_POST['a-num'];
+
         if(isset($_POST['finishBtn'])){
             // $_SESSION['questionId'] = 0;
             // var_dump($_SESSION['userAnswers']);
@@ -85,7 +90,51 @@ require_once('test-query.php');
             // echo $_SESSION['userAnswers'][1]."<br/>";
             // echo $_SESSION['userAnswers'][2]."<br/>";
 
+            // do the math.....
+            $userAnswers = $_SESSION['userAnswers'];
+            $points = 0;
+            $sql = "INSERT INTO `user_test` (userId, solvedTestId) VALUES (?,?)";
+                $stmtinsert = $conn->prepare($sql);
+                $result = $stmtinsert->execute([$_SESSION['id'], $_SESSION['testId']]);
 
+            $solvedTest = 0;
+            $answerTable = array();
+            // if ($result) {
+            $sql_tests = "SELECT id FROM `user_test` ORDER BY id DESC LIMIT 1";
+            $result_tests = $conn->query($sql_tests) or die("failed!");
+            while($row_test = $result_tests->fetch(PDO::FETCH_ASSOC)) {
+                $solvedTest = $row_test['id'];
+            }
+            echo $solvedTest."<br/>";
+            // }
+
+
+            for ($i=0; $i < $endIndex/4; $i++) { 
+                $qId = $rows[$i*4]['questionId'];
+                $corrAnswer = $rows[$i*4]['correctAnswerNumber'];
+                $userAnsw = $userAnswers[$i];
+                $userPoints = $rows[$i*4]['points'];
+                if($corrAnswer == $userAnsw) {
+                    $points += $userPoints;
+                }
+                $answId = 0;
+
+                for ($j=$i*4; $j < $i*4+4; $j++) { 
+                    if ($userAnsw == $rows[$j]['answerNumber']) {
+                        $answId = $rows[$j]['id'];
+                    }
+                }
+                echo $points." ".$qId." ".$corrAnswer." ".$userAnsw." ".$answId."<br/>";
+                $answerTable[] = [$answId, $qId, $solvedTest, $userPoints];
+                $sql_answ = "INSERT INTO `user_answer` (`answerId`, `questionId`, `userSolvedTestId`, `points`) VALUES (?,?,?,?)";
+                $stmtinsert_answ = $conn->prepare($sql_answ);
+                $result_answ = $stmtinsert_answ->execute([$answId, $qId, $solvedTest, $userPoints]);
+                if ($result_answ) {
+                    echo "heyyyyy";
+                }
+            }
+
+            $_SESSION['points'] = $points;
             header("location:menu.php");
         }
 
@@ -135,9 +184,9 @@ require_once('test-query.php');
         </div>
 
         <div class="controls">
-            <button id="prevBtn" class="prevBtn btn hide" name="prevBtn">Предишен</button>
-            <button id="nextBtn" class="nextBtn btn hide" name="nextBtn">Следващ</button>
-            <button id="finishBtn" class="finishBtn btn hide" name="finishBtn">Предай теста</button>
+            <button id="prevBtn" class="prevBtn btn" name="prevBtn">Предишен</button>
+            <button id="nextBtn" class="nextBtn btn" name="nextBtn">Следващ</button>
+            <button id="finishBtn" class="finishBtn btn" name="finishBtn" value="">Предай теста</button>
 
         </div>
 
