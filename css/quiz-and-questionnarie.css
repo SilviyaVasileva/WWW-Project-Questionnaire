@@ -6,8 +6,8 @@ body {
     background-size: 100vw;
 }
 
-.quiz-form,
-.questionnarie-form {
+.quizForm,
+.questionnarieForm {
     margin-top: 30px;
 }
 
@@ -35,38 +35,38 @@ label {
     margin-left: 15px;
 }
 
-label[for="quiz-name"],
-label[for="questionnarie-name"] {
+label[for="quizName"],
+label[for="questionnarieName"] {
     margin-left: 35%;
 }
 
-select[name="existing-quiz-names"],
-select[name="existing-questionnarie-names"]{
+select[name="existingQuizNames"],
+select[name="existingQuestionnarieNames"]{
     width: 250px;
     margin-left:25%;
 }
 
-input[name="create-quiz"],
-input[name="create-questionnarie"],
-input[name="create-question"] {
+input[name="createQuiz"],
+input[name="createQuestionnarie"],
+input[name="createQuestion"] {
     float: none;
     margin-left: 15%;
 }
 
-input[name="quiz-name"],
-input[name="questionnarie-name"] {
+input[name="quizName"],
+input[name="questionnarieName"] {
     float: none;
     margin-left: 13%;
 }
 
-.add-new-quiz,
-.add-new-questionnarie {
+.addNewQuiz,
+.addNewQuestionnarie {
     float: left;
     margin-left: 80px;
     margin-top: 130px;
 }
 
-.add-question {
+.addQuestion {
     float: right;
     margin-right: 80px;
 }

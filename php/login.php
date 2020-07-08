@@ -5,7 +5,7 @@ require_once('quizDB.php')
 <html>
 <head>
 	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="../css/login.css">
+	<link rel="stylesheet" type="text/css" href="../css/loginAndRegistration.css">
 	<title>Вписване</title>
 </head>
 <body>
@@ -26,7 +26,7 @@ require_once('quizDB.php')
 				$_SESSION['email']=$row['email'];
 				$_SESSION['user']=$row['username'];
 				$_SESSION['id']=$row['id'];
-				$_SESSION['type']=$row['type'];
+				$_SESSION['userType']=$row['userType'];
 				// echo $_SESSION['user'];
                 header("location:menu.php");
 			}
@@ -41,8 +41,8 @@ require_once('quizDB.php')
 	?>
 </div>
 
-<div class="login_form">
-	<form id="login-form" action="login.php" method="post">
+<div class="loginForm">
+	<form id="loginForm" action="login.php" method="post">
 			<h2>Вписване:</h2>
 
 			<input id="email" type="email" name="email" placeholder="Email" required>

@@ -17,17 +17,17 @@ require_once('quizDB.php');
 		if(isset($_SESSION['user'])) {
 			echo '<a href="../php/logout.php?logout">Изход</a><br/>';
 			echo '<a href="../php/menu.php?menu">Меню</a>';
-			if ($_SESSION['type'] == 'lector') {
+			if ($_SESSION['userType'] == 'lector') {
 				// if the user is logged and its lector in shows the form
 
 
-				$sql_tests = "SELECT * FROM `test` WHERE type = 'test' AND creator_id = ".$_SESSION['id'];
+				$sql_tests = "SELECT * FROM `test` WHERE testType = 'test' AND creatorId = ".$_SESSION['id'];
 			 	$result_tests = $conn->query($sql_tests) or die("failed!");
 
-				if (isset($_POST['create-quiz'])) {
-			 		// create a test in db
-				 	$testName = $_POST['quiz-name'];
-			 		$sql = "INSERT INTO test (test_name, creator_id) VALUES (?,?)";
+				 if (isset($_POST['createQuiz'])) {
+					// create a test in db
+					$testName = $_POST['quizName'];
+			 		$sql = "INSERT INTO test (testName, creatorId) VALUES (?,?)";
 					$stmtinsert = $conn->prepare($sql);
 					$result = $stmtinsert->execute([$testName, $_SESSION['id']]);
 					if($result) {
@@ -37,26 +37,26 @@ require_once('quizDB.php');
 						echo "Wrong input! <br />";
 					}
 				}
-				if (isset($_POST['create-question'])) {
+				if (isset($_POST['createQuestion'])) {
 
 
 			 		// Create a question
-			 		$test_id = $_POST['existing-quiz-names'];
-			 		// echo $test_id;
+			 		$testId = $_POST['existingQuizNames'];
+			 		// echo $testId;
 				 	$question = $_POST['question'];
 				 	$points = $_POST['points'];
 				 	$correct_answer = $_POST['correct_answer'];
 
-				 	echo $test_id."  въпрос ".$question."  точки ".$points."  отговор ".$correct_answer;
+				 	echo $testId."  въпрос ".$question."  точки ".$points."  отговор ".$correct_answer;
 
-					 	$sql_create_q = "INSERT INTO `question` (test_id, description, points, correct_answer_id) VALUES (?,?,?,?)";
+					 	$sql_create_q = "INSERT INTO `question` (testId, questionDescription, points, correctAnswerNumber) VALUES (?,?,?,?)";
 						$stmtinsert_question = $conn->prepare($sql_create_q);
-						$result_create_q = $stmtinsert_question->execute([$test_id, $question, $points, $correct_answer]);
+						$result_create_q = $stmtinsert_question->execute([$testId, $question, $points, $correct_answer]);
 
 
 				 	// Get question id
 
-				 	$sql_qid = "SELECT * FROM `question` WHERE description = '".$question."'";
+				 	$sql_qid = "SELECT * FROM `question` WHERE questionDescription = '".$question."'";
 			 		$result_q = $conn->query($sql_qid) or die("failed!");
 
 			 		$q_id = 0;
@@ -72,19 +72,19 @@ require_once('quizDB.php');
 			 		$answ3 = $_POST['answ3'];
 			 		$answ4 = $_POST['answ4'];
 
-					$sql_create_answ1 = "INSERT INTO `answer` (question_id, answer_number, answer_text) VALUES (?,?,?)";
+					$sql_create_answ1 = "INSERT INTO `answer` (questionId, answerNumber, answerDescription) VALUES (?,?,?)";
 					$stmtinsert_answ1 = $conn->prepare($sql_create_answ1);
 					$result_answ1 = $stmtinsert_answ1->execute([$q_id, 1, $answ1]);
 
-					$sql_create_answ2 = "INSERT INTO `answer` (question_id, answer_number, answer_text) VALUES (?,?,?)";
+					$sql_create_answ2 = "INSERT INTO `answer` (questionId, answerNumber, answerDescription) VALUES (?,?,?)";
 					$stmtinsert_answ2 = $conn->prepare($sql_create_answ2);
 					$result_answ2 = $stmtinsert_answ2->execute([$q_id, 2, $answ2]);
 
-					$sql_create_answ3 = "INSERT INTO `answer` (question_id, answer_number, answer_text) VALUES (?,?,?)";
+					$sql_create_answ3 = "INSERT INTO `answer` (questionId, answerNumber, answerDescription) VALUES (?,?,?)";
 					$stmtinsert_answ3 = $conn->prepare($sql_create_answ3);
 					$result_answ3 = $stmtinsert_answ3->execute([$q_id, 3, $answ3]);
 
-					$sql_create_answ4 = "INSERT INTO `answer` (question_id, answer_number, answer_text) VALUES (?,?,?)";
+					$sql_create_answ4 = "INSERT INTO `answer` (questionId, answerNumber, answerDescription) VALUES (?,?,?)";
 					$stmtinsert_answ4 = $conn->prepare($sql_create_answ4);
 					$result_answ4 = $stmtinsert_answ4->execute([$q_id, 4, $answ4]);
 
@@ -95,24 +95,24 @@ require_once('quizDB.php');
 	?>
 </div>
 
-<div class="quiz-form">
-	<form class="add-new-quiz" action="add-quiz.php" method="post">
+<div class="quizForm">
+	<form class="addNewQuiz" action="add-quiz.php" method="post">
 		<h2>Добави тест:</h2>
-		<label for="quiz-name"><b>Заглавие на теста</b></label>
+		<label for="quizName"><b>Заглавие на теста</b></label>
 		<br>
-		<input type="text" name="quiz-name" required>
+		<input type="text" name="quizName" required>
 		<br><br>
-		<input type="submit" name="create-quiz" value="Добави">
+		<input type="submit" name="createQuiz" value="Добави">
 		<br>
 	</form>
 
-	<form class="add-question" action="add-quiz.php" method="post">
+	<form class="addQuestion" action="add-quiz.php" method="post">
 		<h2>Добави въпрос:</h2>
 		<br>
-		<select name="existing-quiz-names">
+		<select name="existingQuizNames">
 			<?php 
 			while ($row_test = $result_tests->fetch(PDO::FETCH_ASSOC)):;?>
-			<option value="<?php echo $row_test['id'] ?>"><?php echo $row_test['test_name'];?></option>
+			<option value="<?php echo $row_test['id'] ?>"><?php echo $row_test['testName'];?></option>
 			<?php endwhile;?>
 		</select>
 		<br><br>
@@ -144,7 +144,7 @@ require_once('quizDB.php');
 		</select></label>
 <br><br>
 
-		<input type="submit" name="create-question" value="Добави">
+		<input type="submit" name="createQuestion" value="Добави">
 		<br>
 	</form>
 </div>

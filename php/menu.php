@@ -10,17 +10,17 @@ require_once('quizDB.php');
 </head>
 <body>
 
-<div class="mainpage">
+<div class="mainPage">
 	<?php
 		session_start();
 
 		if(isset($_SESSION['user'])) {
 			// if the user is logged shows all tests
-			$sql_tests = "SELECT id, test_name FROM `test` WHERE type = 'test'";
+			$sql_tests = "SELECT id, testName FROM `test` WHERE testType = 'test'";
 		 	$result_tests = $conn->query($sql_tests) or die("failed!");
 
 		 	// if the user is logged shows all quizzes
-			$sql_quiz = "SELECT id, test_name FROM `test` WHERE type = 'quiz'";
+			$sql_quiz = "SELECT id, testName FROM `test` WHERE testType = 'quiz'";
 			 $result_quiz = $conn->query($sql_quiz) or die("failed!");
 			 
 			// $print1 = $result_tests->fetchall(PDO::FETCH_ASSOC);
@@ -38,14 +38,14 @@ require_once('quizDB.php');
 			}
 
 			echo '<a href="../php/logout.php?logout">Изход</a><br/>';
-			if ($_SESSION['type'] == 'lector') {
+			if ($_SESSION['userType'] == 'lector') {
 				echo '<a href="../php/add-quiz.php?add-quiz">Добави тест</a><br/>';
 				echo '<a href="../php/add-questionnarie.php?add-questionnarie">Добави анкета</a><br/>';
 			}
-			if(isset($_POST['test_id'])){
+			if(isset($_POST['testId'])){
 				// echo "HEREEEEE <br/>";
-				// echo $_POST['test_id'];
-				$_SESSION['test_id'] = $_POST['test_id'];
+				// echo $_POST['testId'];
+				$_SESSION['testId'] = $_POST['testId'];
 				header("location:get-test.php");
 			}
 			// else{
@@ -58,7 +58,7 @@ require_once('quizDB.php');
 		}
 	?>
 </div>
-<div class="quiz-and-questionnare">
+<div class="quizAndQuestionnare">
 	<script type="text/javascript">var questionnarie_arr = <?php echo json_encode($q_rows, JSON_UNESCAPED_UNICODE); ?>;
 	var quiz_arr = <?php echo json_encode($t_rows, JSON_UNESCAPED_UNICODE); ?>;
 	</script>
