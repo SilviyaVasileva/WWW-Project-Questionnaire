@@ -11,6 +11,7 @@ const showQuestions = (event) => {
   console.log("endIndex", endIndex);
   for (let ind = 0; ind < answersElements.length; ind++) {
     answersElements[ind].addEventListener("click", (event) => {
+      window.sessionStorage.setItem(currIndex, ind + 1);
       const SelectedButton = event.target;
       SelectedButton.style.backgroundColor = "#90EE90";
       SelectedButton.style.color = "black";
@@ -28,7 +29,6 @@ const showQuestions = (event) => {
   }
 };
 showQuestions();
-
 // const startButton = document.getElementById("startBtn");
 // const nextButton = document.getElementById("nextBtn");
 // const prevButton = document.getElementById("prevBtn");
