@@ -7,6 +7,18 @@ const answersElements = document.getElementsByName("answ");
 const questionElement = document.getElementById("question");
 
 const showQuestions = (event) => {
+  prevButton.classList.remove('hide');
+  nextButton.classList.remove('hide');
+  if (startIndex == currIndex) {
+    prevButton.classList.add("hide");
+  }
+  if (endIndex - 1 == currIndex) {
+    nextButton.classList.add("hide");
+  }
+  if (endIndex - 1 == currIndex) {
+    finishButton.classList.remove("hide");
+  }
+
   console.log("currIndex", currIndex);
   console.log("endIndex", endIndex);
   for (let ind = 0; ind < answersElements.length; ind++) {
@@ -15,15 +27,7 @@ const showQuestions = (event) => {
       const SelectedButton = event.target;
       SelectedButton.style.backgroundColor = "#90EE90";
       SelectedButton.style.color = "black";
-      if (endIndex - 1 > currIndex) {
-        nextButton.classList.remove("hide");
-      }
-      if (startIndex < currIndex) {
-        prevButton.classList.remove("hide");
-      }
-      if (endIndex - 1 == currIndex) {
-        finishButton.classList.remove("hide");
-      }
+      
       event.preventDefault();
     });
   }
