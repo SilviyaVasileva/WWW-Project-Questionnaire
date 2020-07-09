@@ -26,6 +26,7 @@ showQuestions();
 if (buttonInd > 0) {
   buttons[buttonInd - 1].classList.add("selected");
 }
+
 // console.log("currIndex", currIndex);
 // console.log("endIndex", endIndex);
 // for (let ind = 0; ind < answersElements.length; ind++) {

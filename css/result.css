@@ -1,0 +1,57 @@
+body {
+    padding: 0;
+    margin: 0;
+    line-height: 1;
+    background-color: #808080;
+    background-size: 100vw;
+}
+
+h2 {
+    text-align: center;
+    margin-top: 3%;
+}
+
+table,
+th,
+td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    background-color: white;
+    text-align: center;
+    margin: auto;
+    margin-top: 3%;
+    padding: 1em;
+}
+
+th {
+    background-color: #B0B0B0;
+}
+
+h2 {
+    color: black;
+
+}
+
+#quiz {
+    text-align: left;
+    margin-left: 20%;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+#questionnarie {
+    text-align: right;
+    margin-left: 40%;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+#quizResult {
+    float: left;
+    margin: 0 15px 15px 10%;
+}
+
+#questionnarieResult {
+    float: right;
+    margin: 0 10% 15px 15px;
+}
