@@ -177,12 +177,10 @@ require_once('test-query.php');
         </div>
 
         <div class="controls">
-            <button id="prevBtn" class="prevBtn btn" name="prevBtn">Предишен</button>
+            <button id="prevBtn" class="prevBtn btn hide" name="prevBtn">Предишен</button>
             <button id="nextBtn" class="nextBtn btn" name="nextBtn">Следващ</button>
-            <button id="finishBtn" class="finishBtn btn" name="finishBtn" value="">Предай теста</button>
-
+            <button id="finishBtn" class="finishBtn btn hide" name="finishBtn" value="">Предай теста</button>
         </div>
-
 </div></div>
 </form>
 </body>

@@ -7,17 +7,17 @@ const answersElements = document.getElementsByName("answ");
 const questionElement = document.getElementById("question");
 
 const showQuestions = (event) => {
-  // prevButton.classList.remove('hide');
-  // nextButton.classList.remove('hide');
-  // if (startIndex == currIndex) {
-  //   prevButton.classList.add("hide");
-  // }
-  // if (endIndex - 1 == currIndex) {
-  //   nextButton.classList.add("hide");
-  // }
-  // if (endIndex - 1 == currIndex) {
-  //   finishButton.classList.remove("hide");
-  // }
+  prevButton.classList.remove('hide');
+  nextButton.classList.remove('hide');
+  if (startIndex == currIndex) {
+    prevButton.classList.add("hide");
+  }
+  if (endIndex - 1 == currIndex) {
+    nextButton.classList.add("hide");
+  }
+  if (endIndex - 1 == currIndex) {
+    finishButton.classList.remove("hide");
+  }
 
   // console.log("currIndex", currIndex);
   // console.log("endIndex", endIndex);
@@ -35,7 +35,7 @@ const showQuestions = (event) => {
   // }
 };
 
-// showQuestions();
+showQuestions();
 // var storedArray = JSON.parse(sessionStorage.getItem('items'));
 // function passVal(){
 //   var data = {
