@@ -6,7 +6,7 @@ require_once('quizDB.php');
 <head>
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="../css/menu.css">
-	<title>Регистрация</title>
+	<title>Меню</title>
 </head>
 <body>
 
@@ -27,7 +27,7 @@ require_once('quizDB.php');
 
 		 	// if the user is logged shows all quizzes
 			$sql_quiz = "SELECT id, testName FROM `test` WHERE testType = 'quiz'";
-			 $result_quiz = $conn->query($sql_quiz) or die("failed!");
+			$result_quiz = $conn->query($sql_quiz) or die("failed!");
 			 
 			// $print1 = $result_tests->fetchall(PDO::FETCH_ASSOC);
 			// var_dump($print1);
@@ -43,9 +43,9 @@ require_once('quizDB.php');
 				$t_rows[] = $t_row;
 			}
 
-			echo '<a href="../php/logout.php?logout">Изход</a><br/>';
+			echo '<a href="../php/logout.php?logout">Изход</a>   ';
 			if ($_SESSION['userType'] == 'lector') {
-				echo '<a href="../php/add-quiz.php?add-quiz">Добави тест</a><br/>';
+				echo '<a href="../php/add-quiz.php?add-quiz">Добави тест</a>   ';
 				echo '<a href="../php/add-questionnarie.php?add-questionnarie">Добави анкета</a><br/>';
 			}
 			if(isset($_POST['testId'])){

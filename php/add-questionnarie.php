@@ -14,8 +14,8 @@ require_once('quizDB.php');
 	<?php
 		session_start();
 		if(isset($_SESSION['user'])) {
-			echo '<a href="../php/logout.php?logout">Изход</a><br/>';
-			echo '<a href="../php/menu.php?menu">Меню</a>';
+			echo '<a href="../php/logout.php?logout">Изход</a> ';
+			echo ' <a href="../php/menu.php?menu">Меню</a>';
 
 			if ($_SESSION['userType'] == 'lector') {
 

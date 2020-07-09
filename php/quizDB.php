@@ -6,7 +6,7 @@
 // $pass = "parola123";
 
 $host = "localhost";
-$dbname = "quiz";
+$dbname = "quiz1";
 $user = "root";
 $pass = "";
 

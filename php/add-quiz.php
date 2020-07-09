@@ -15,8 +15,8 @@ require_once('quizDB.php');
 		session_start();
 		// check if the user is logged in
 		if(isset($_SESSION['user'])) {
-			echo '<a href="../php/logout.php?logout">Изход</a><br/>';
-			echo '<a href="../php/menu.php?menu">Меню</a>';
+			echo '<a href="../php/logout.php?logout">Изход</a>   ';
+			echo ' <a href="../php/menu.php?menu">Меню</a>';
 			if ($_SESSION['userType'] == 'lector') {
 				// if the user is logged and its lector in shows the form
 
@@ -47,7 +47,7 @@ require_once('quizDB.php');
 				 	$points = $_POST['points'];
 				 	$correct_answer = $_POST['correct_answer'];
 
-				 	echo $testId."  въпрос ".$question."  точки ".$points."  отговор ".$correct_answer;
+				 	// echo $testId."  въпрос ".$question."  точки ".$points."  отговор ".$correct_answer;
 
 					 	$sql_create_q = "INSERT INTO `question` (testId, questionDescription, points, correctAnswerNumber) VALUES (?,?,?,?)";
 						$stmtinsert_question = $conn->prepare($sql_create_q);
