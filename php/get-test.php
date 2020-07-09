@@ -76,12 +76,6 @@ require_once('test-query.php');
         // echo $_POST['a-num'];
 
         if(isset($_POST['finishBtn'])){
-            // $_SESSION['questionId'] = 0;
-            // var_dump($_SESSION['userAnswers']);
-            // echo "<br/>";
-            // echo $_SESSION['userAnswers'][0]."<br/>";
-            // echo $_SESSION['userAnswers'][1]."<br/>";
-            // echo $_SESSION['userAnswers'][2]."<br/>";
 
             // do the math.....
             $userAnswers = $_SESSION['userAnswers'];
@@ -92,23 +86,24 @@ require_once('test-query.php');
 
             $solvedTest = 0;
             $answerTable = array();
-            // if ($result) {
-            $sql_tests = "SELECT id FROM `user_test` ORDER BY id DESC LIMIT 1";
-            $result_tests = $conn->query($sql_tests) or die("failed!");
-            while($row_test = $result_tests->fetch(PDO::FETCH_ASSOC)) {
-                $solvedTest = $row_test['id'];
+            if ($result) {
+                $sql_tests = "SELECT id FROM `user_test` ORDER BY id DESC LIMIT 1";
+                $result_tests = $conn->query($sql_tests) or die("failed!");
+                while($row_test = $result_tests->fetch(PDO::FETCH_ASSOC)) {
+                    $solvedTest = $row_test['id'];
             }
-            // echo $solvedTest."<br/>";
-            // }
+            }
 
 
             for ($i=0; $i < $endIndex/4; $i++) { 
                 $qId = $rows[$i*4]['questionId'];
                 $corrAnswer = $rows[$i*4]['correctAnswerNumber'];
                 $userAnsw = $userAnswers[$i];
-                $userPoints = $rows[$i*4]['points'];
+                $answPoints = $rows[$i*4]['points'];
+                $userPoints = 0;
                 if($corrAnswer == $userAnsw) {
-                    $points += $userPoints;
+                    $points += $answPoints;
+                    $userPoints = $answPoints;
                 }
                 $answId = 0;
 
@@ -118,7 +113,7 @@ require_once('test-query.php');
                     }
                 }
                 // echo $points." ".$qId." ".$corrAnswer." ".$userAnsw." ".$answId."<br/>";
-                $answerTable[] = [$answId, $qId, $solvedTest, $userPoints];
+                $answerTable[] = [$answId, $qId, $solvedTest, $answPoints];
                 $sql_answ = "INSERT INTO `user_answer` (`answerId`, `questionId`, `userSolvedTestId`, `points`) VALUES (?,?,?,?)";
                 $stmtinsert_answ = $conn->prepare($sql_answ);
                 $result_answ = $stmtinsert_answ->execute([$answId, $qId, $solvedTest, $userPoints]);
@@ -136,7 +131,7 @@ require_once('test-query.php');
     // 
     // 
 
-	?>
+    ?>
 <!-- answer id ; creator-id - user id ; test-name ; test - type(test-test,anketa-quiz) ; test - id ; 
     question descr ; points; curr ans id - checks if true or false - returns the answ num ; quest id ; 
     answ num ; answ text-->
@@ -148,9 +143,9 @@ require_once('test-query.php');
     ?>
 </div>
 <script type="text/javascript">
-	var startIndex = <?php echo $startIndex/4;?>;
-	var currIndex = <?php echo $questionIndex/4;?>;
-	var endIndex = <?php echo $endIndex/4;?>;
+    var startIndex = <?php echo $startIndex/4;?>;
+    var currIndex = <?php echo $questionIndex/4;?>;
+    var endIndex = <?php echo $endIndex/4;?>;
 </script> 
 <script type="text/javascript" src="../js/show-test.js" defer></script>
 <!-- <form> -->
