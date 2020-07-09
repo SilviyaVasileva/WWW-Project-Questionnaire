@@ -15,8 +15,8 @@ require_once('quizDB.php');
 		session_start();
 		// check if the user is logged in
 		if(isset($_SESSION['user'])) {
-			echo '<a href="../php/logout.php?logout">Изход</a><br/>';
-			echo '<a href="../php/menu.php?menu">Меню</a>';
+			echo '<a href="../php/logout.php?logout">Изход</a>   ';
+			echo ' <a href="../php/menu.php?menu">Меню</a>';
 			if ($_SESSION['userType'] == 'lector') {
 				// if the user is logged and its lector in shows the form
 

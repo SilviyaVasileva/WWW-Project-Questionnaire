@@ -14,13 +14,6 @@ require_once('test-query.php');
 <body>
     <?php 
         $endIndex = count($rows);
-        echo "<br/>";
-        // var_dump($rows);
-        // echo json_encode($rows, JSON_UNESCAPED_UNICODE);
-        echo "<br/>";
-
-
-        echo "endIndex: ".$endIndex."<br/>";
         $testName = "";
 
 
@@ -49,7 +42,7 @@ require_once('test-query.php');
             }
             // goes to the menu
             
-            echo $questionIndex."<br/>";
+            // echo $questionIndex."<br/>";
             
             if($questionIndex >= $startIndex && $questionIndex <= $endIndex - 3) {
                 $questionDescription = $rows[$questionIndex]['questionDescription'];
@@ -63,9 +56,9 @@ require_once('test-query.php');
                 }
                 // var_dump($answers);
             }
-            else {
-                echo $questionIndex." ".$endIndex;
-            }
+            // else {
+            //     echo $questionIndex." ".$endIndex;
+            // }
 
             //
             //userAnswers
@@ -73,7 +66,7 @@ require_once('test-query.php');
             
             if (isset($_POST['answ'])) {
                 $_SESSION['userAnswers'][$questionIndex/4] = $_POST['answ'];
-                echo "hereee<br/>";
+                // echo "hereee<br/>";
             }
             // var_dump($_SESSION['userAnswers']);
             // echo "<br/>";
@@ -105,7 +98,7 @@ require_once('test-query.php');
             while($row_test = $result_tests->fetch(PDO::FETCH_ASSOC)) {
                 $solvedTest = $row_test['id'];
             }
-            echo $solvedTest."<br/>";
+            // echo $solvedTest."<br/>";
             // }
 
 
@@ -124,14 +117,14 @@ require_once('test-query.php');
                         $answId = $rows[$j]['id'];
                     }
                 }
-                echo $points." ".$qId." ".$corrAnswer." ".$userAnsw." ".$answId."<br/>";
+                // echo $points." ".$qId." ".$corrAnswer." ".$userAnsw." ".$answId."<br/>";
                 $answerTable[] = [$answId, $qId, $solvedTest, $userPoints];
                 $sql_answ = "INSERT INTO `user_answer` (`answerId`, `questionId`, `userSolvedTestId`, `points`) VALUES (?,?,?,?)";
                 $stmtinsert_answ = $conn->prepare($sql_answ);
                 $result_answ = $stmtinsert_answ->execute([$answId, $qId, $solvedTest, $userPoints]);
-                if ($result_answ) {
-                    echo "heyyyyy";
-                }
+                // if ($result_answ) {
+                //     echo "heyyyyy";
+                // }
             }
 
             $_SESSION['points'] = $points;
