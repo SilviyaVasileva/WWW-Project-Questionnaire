@@ -170,10 +170,10 @@ require_once('test-query.php');
 
             <div id="question"><?php echo $questionDescription;?></div>
             <div id="answerBtns" class="btnGrid">
-                <button class="btn" name="answ" value="<?php echo $answers[0][1];?>"><?php echo $answers[0][0];?></button>
-                <button class="btn" name="answ" value="<?php echo $answers[1][1];?>"><?php echo $answers[1][0];?></button>
-                <button class="btn" name="answ" value="<?php echo $answers[2][1];?>"><?php echo $answers[2][0];?></button>
-                <button class="btn" name="answ" value="<?php echo $answers[3][1];?>"><?php echo $answers[3][0];?></button>
+                <button id="btn1" class="btn" name="answ" value="<?php echo $answers[0][1];?>"><?php echo $answers[0][0];?></button>
+                <button id="btn2" class="btn" name="answ" value="<?php echo $answers[1][1];?>"><?php echo $answers[1][0];?></button>
+                <button id="btn3" class="btn" name="answ" value="<?php echo $answers[2][1];?>"><?php echo $answers[2][0];?></button>
+                <button id="btn4" class="btn" name="answ" value="<?php echo $answers[3][1];?>"><?php echo $answers[3][0];?></button>
             </div>
         </div>
 

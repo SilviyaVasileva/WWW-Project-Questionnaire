@@ -2,6 +2,9 @@
     --grid-cols: 1;
     --grid-rows: 1;
 }
+body{
+    background-color: #808080;
+}
 
 #questionnarie,
 #quiz {
@@ -17,6 +20,7 @@
 }
 
 #questionnarie .grid-item {
+    background-color: white;
     background-image: url('../img/Question.jpg');
     background-repeat: no-repeat;
     background-size: 210px;
@@ -26,6 +30,7 @@
 }
 
 #quiz .grid-item {
+    background-color: white;
     background-image: url('../img/test.jpg');
     background-repeat: no-repeat;
     background-size: 250px;
@@ -38,4 +43,10 @@
     padding-bottom: 0;
     border: 1px solid #ddd;
     text-align: center;
+}
+h3{
+    text-align: center;
+    color:white;
+    font-size: 25px;
+    text-shadow: 2px 2px black;
 }
