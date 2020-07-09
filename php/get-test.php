@@ -63,10 +63,15 @@ require_once('test-query.php');
             //
             //userAnswers
             //
-            
+            $buttonInd = 0;
             if (isset($_POST['answ'])) {
                 $_SESSION['userAnswers'][$questionIndex/4] = $_POST['answ'];
+                $buttonInd = $_POST['answ'];
+                echo $buttonInd."string";
                 // echo "hereee<br/>";
+            }
+            else {
+                echo $buttonInd."string";
             }
             // var_dump($_SESSION['userAnswers']);
             // echo "<br/>";
@@ -143,6 +148,7 @@ require_once('test-query.php');
     ?>
 </div>
 <script type="text/javascript">
+    var buttonInd = <?php echo $buttonInd;?>;
     var startIndex = <?php echo $startIndex/4;?>;
     var currIndex = <?php echo $questionIndex/4;?>;
     var endIndex = <?php echo $endIndex/4;?>;
