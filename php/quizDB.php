@@ -1,9 +1,5 @@
 
 <?php
-// $host = "localhost";
-// $dbname = "quiz";
-// $user = "azaz";
-// $pass = "parola123";
 
 $host = "localhost";
 $dbname = "quiz1";

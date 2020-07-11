@@ -27,10 +27,10 @@ require_once('quizDB.php');
 			}
 			if($testType == 'test') {
 				//
-				echo "<h2>Вошите точки са ".$_SESSION['points']."</h2>";
+				echo "<h2>Вашите точки са ".$_SESSION['points']."</h2>";
 			}
 			else {
-				echo "<h2>Вошите отговори бяха предадени успешно!</h2>";
+				echo "<h2>Вашите отговори бяха предадени успешно!</h2>";
 			}
 		}
 	}

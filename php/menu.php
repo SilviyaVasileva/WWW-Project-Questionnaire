@@ -29,9 +29,6 @@ require_once('quizDB.php');
 			$sql_quiz = "SELECT id, testName FROM `test` WHERE testType = 'quiz'";
 			$result_quiz = $conn->query($sql_quiz) or die("failed!");
 			 
-			// $print1 = $result_tests->fetchall(PDO::FETCH_ASSOC);
-			// var_dump($print1);
-			// echo '<br>';
 		 	// array for json
 		 	$q_rows = array();
 		 	$t_rows = array();
@@ -44,45 +41,39 @@ require_once('quizDB.php');
 			}
 
 			echo '<a href="../php/logout.php?logout">Изход</a>   ';
+
 			if ($_SESSION['userType'] == 'lector') {
+				//if the user is a lector add the add a quiz and a questionnarie option
 				echo '<a href="../php/add-quiz.php?add-quiz">Добави тест</a>   ';
 				echo '<a href="../php/add-questionnarie.php?add-questionnarie">Добави анкета</a><br/>';
 			}
+
 			if(isset($_POST['testId'])){
-				// echo "HEREEEEE <br/>";
-				// echo $_POST['testId'];
 				$_SESSION['testId'] = $_POST['testId'];
 				header("location:get-test.php");
 			}
-			// else{
-				// echo "not HEREEE <bt/>";
-			// }
-
 		}
 		else{
-			echo "neeee TT <br/>";
+			echo "Влезте в профил, за да може да видите съдържанието <br>";
 		}
 	?>
 </div>
 <div class="quizAndQuestionnare">
-	<script type="text/javascript">var questionnarie_arr = <?php echo json_encode($q_rows, JSON_UNESCAPED_UNICODE); ?>;
-	var quiz_arr = <?php echo json_encode($t_rows, JSON_UNESCAPED_UNICODE); ?>;
+	<script type="text/javascript">
+		var questionnarie_arr = <?php echo json_encode($q_rows, JSON_UNESCAPED_UNICODE); ?>;
+		var quiz_arr = <?php echo json_encode($t_rows, JSON_UNESCAPED_UNICODE); ?>;
 	</script>
 	<script src="../js/menu.js" defer></script>
 	<form action="menu.php" method="post">
-	<div class="questionnarie">
-		<h3>Анкети</h3>
-		<div id="questionnarie" class="questionnarie">
+		<div class="questionnarie">
+			<h3>Анкети</h3>
+			<div id="questionnarie" class="questionnarie"></div>
 		</div>
-	</div>
-	<div class="quiz">
-		<h3>Тестове</h3>
-		<div id="quiz" class="quiz">
+		<div class="quiz">
+			<h3>Тестове</h3>
+			<div id="quiz" class="quiz"></div>
 		</div>
-	</div>
+	</form>
 </div>
-</form>
-
-
 </body>
 </html>

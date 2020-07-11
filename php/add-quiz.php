@@ -17,9 +17,8 @@ require_once('quizDB.php');
 		if(isset($_SESSION['user'])) {
 			echo '<a href="../php/logout.php?logout">Изход</a>   ';
 			echo ' <a href="../php/menu.php?menu">Меню</a>';
+			// if the user is logged and its lector in shows the form
 			if ($_SESSION['userType'] == 'lector') {
-				// if the user is logged and its lector in shows the form
-
 
 				$sql_tests = "SELECT * FROM `test` WHERE testType = 'test' AND creatorId = ".$_SESSION['id'];
 			 	$result_tests = $conn->query($sql_tests) or die("failed!");
@@ -42,12 +41,9 @@ require_once('quizDB.php');
 
 			 		// Create a question
 			 		$testId = $_POST['existingQuizNames'];
-			 		// echo $testId;
 				 	$question = $_POST['question'];
 				 	$points = $_POST['points'];
 				 	$correct_answer = $_POST['correct_answer'];
-
-				 	// echo $testId."  въпрос ".$question."  точки ".$points."  отговор ".$correct_answer;
 
 					 	$sql_create_q = "INSERT INTO `question` (testId, questionDescription, points, correctAnswerNumber) VALUES (?,?,?,?)";
 						$stmtinsert_question = $conn->prepare($sql_create_q);

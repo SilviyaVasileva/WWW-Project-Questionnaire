@@ -23,7 +23,6 @@ require_once('quizDB.php');
 		 	$utype = '';
 		 	foreach ($userType as $t){ 
 		 		$utype = $t;
-   				// echo $utype."<br />";
 			}
 			if($password==$confirmPassword) {
 				$sql = "INSERT INTO user (username, email, password, FN, userType) VALUES (?,?,?,?,?)";
@@ -53,29 +52,29 @@ require_once('quizDB.php');
 
 <div class="registrationForm">
 	<form action="registration.php" method="post" id="registrationForm">
-			<h2>Регистрация:</h2>
+		<h2>Регистрация:</h2>
 
-			<input id="username" type="text" name="username" placeholder="Потребителско име" required>
+		<input id="username" type="text" name="username" placeholder="Потребителско име" required>
 			
-			<input id="password" type="password" name="password" placeholder="Парола" required>
-			<input id="confirmPassword" type="password" name="confirmPassword" placeholder="Потвърди парола" required>
+		<input id="password" type="password" name="password" placeholder="Парола" required>
+		<input id="confirmPassword" type="password" name="confirmPassword" placeholder="Потвърди парола" required>
 
-			<input id="email" type="email" name="email" placeholder="Email" required>
+		<input id="email" type="email" name="email" placeholder="Email" required>
+		<input id="FN" type="number" name="FN" placeholder="Факултетен номер">
 
-			<input id="FN" type="number" name="FN" placeholder="Факултетен номер">
+		<h3>Вид потребител:</h3>
+		<label for="userType"><b>Студент</b></label>
+		<input type="checkbox" name="userType[]" id="userType" value="student">
+		<label for="userType"><b>Преподавател</b></label>
+		<input type="checkbox" name="userType[]" id="userType" value="lector">
 
-			<h3>Вид потребител:</h3>
-			<label for="userType"><b>Студент</b></label>
-			<input type="checkbox" name="userType[]" id="userType" value="student">
-			<label for="userType"><b>Преподавател</b></label>
-			<input type="checkbox" name="userType[]" id="userType" value="lector">
-
-			<input type="submit" name="createUser" value="Регистрирай се">
-			<p><a href="../index.php">Влез в профил</a></p>
-			<div class="messages">
-				<p id="onError"></p>
-  			</div>
-  			<script src="../js/registration.js"></script>
+		<input type="submit" name="createUser" value="Регистрирай се">
+		<br>
+		<a href="../index.php">Влез в профил</a>
+		<div class="messages">
+			<p id="onError"></p>
+  		</div>
+  		<script src="../js/registration.js"></script>
 	</form>	
 </div>
 </body>

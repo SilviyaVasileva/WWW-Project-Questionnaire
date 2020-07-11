@@ -1,9 +1,10 @@
+//the regexp for the validation
 const isAlphaNumeric = (input) => new RegExp(/^[a-zA-Z0-9]+$/).test(input);
-
 const hasCapitalLetter = (input) => new RegExp(/^.*[A-Z].*/).test(input);
 const hasNumber = (input) => new RegExp(/^.*[0-9].*/).test(input);
 const hasSmallLetter = (input) => new RegExp(/^.*[a-z].*/).test(input);
 
+//validations
 const emailValidation = (input) =>
   new RegExp(/^[a-zA-Z0-9_.+-]+@([a-zA-Z0-9-]{2,5})+\.[a-zA-Z0-9-.]{1,4}/).test(
     input
@@ -18,10 +19,12 @@ const passwordValidation = (input) =>
   hasNumber(input) &&
   hasSmallLetter(input);
 
+//msg for the errors
 const onErrorMessage = (message) =>
   (document.getElementById("onError").innerHTML +=
-    "<b>Error:</b> " + message + "<br/>");
+    "<b>Грешка:</b> " + message + "<br/>");
 
+//clear the msg so that the user can start again
 const clearPreviousErrors = () => {
   document.getElementById("onError").innerHTML = "";
 };
@@ -30,7 +33,7 @@ const fieldLength = (input, nameOfInput, minLength, maxLength) => {
   if (input.length < minLength || input.length > maxLength) {
     const value = nameOfInput.charAt(0).toUpperCase() + nameOfInput.slice(1);
     onErrorMessage(
-      `${value} should be between ${minLength} and ${maxLength} symbols long!`
+      `${value} трябва да е с дължина между ${minLength} и ${maxLength}!`
     );
   }
 };
@@ -47,18 +50,18 @@ const validate = async (event) => {
 
   const { username, email, password, confirmPassword } = fields;
 
-  fieldLength(username, "username", 3, 10);
+  fieldLength(username, "Потребителско име", 3, 10);
 
-  fieldLength(password, "password", 6, 10);
+  fieldLength(password, "Парола", 6, 10);
   !passwordValidation(password) &&
     onErrorMessage(
-      "Password should have at least one small letter, one capital letter and one number!"
+      "Паролата трябва да има минимум една главна, една малка и едно число!"
     );
 
   if (password !== confirmPassword) {
-    onErrorMessage("Confirm password isn't the same as password!");
+    onErrorMessage("Потвърдената парола не е същата като първоначалната!");
   }
-  !emailValidation(email) && onErrorMessage("Invalid email!");
+  !emailValidation(email) && onErrorMessage("Неправилен email!");
 
   if(document.getElementById("onError").innerHTML === "") { return true; }
 

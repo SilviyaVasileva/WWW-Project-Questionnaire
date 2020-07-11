@@ -11,10 +11,14 @@ div form {
     width: 30vw;
     background-color: #808080;
     padding: 5px 0 5px 0;
-    margin: 10% 55% 0% 15%;
+    margin: 5% 55% 0% 15%;
     opacity: 80%;
     border-radius: 8px;
     box-shadow: 0 0 10px 2px;
+}
+
+.loginForm{
+    margin-top:10%;
 }
 
 input {

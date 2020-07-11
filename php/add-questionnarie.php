@@ -14,13 +14,13 @@ require_once('quizDB.php');
 	<?php
 		session_start();
 		if(isset($_SESSION['user'])) {
-			echo '<a href="../php/logout.php?logout">Изход</a> ';
-			echo ' <a href="../php/menu.php?menu">Меню</a>';
+			echo '<a href="../php/logout.php">Изход</a> ';
+			echo ' <a href="../php/menu.php">Меню</a>';
 
 			if ($_SESSION['userType'] == 'lector') {
 
 				$sql_tests = "SELECT * FROM `test` WHERE testType like '%quiz%' AND creatorId = ".$_SESSION['id'];
-			 	$result_tests = $conn->query($sql_tests) or die("failed!");
+			 	$result_tests = $conn->query($sql_tests) or die("Failed!");
 
 				if (isset($_POST['createQuestionnarie'])) {
 					$testName = $_POST['questionnarieName'];
@@ -55,7 +55,6 @@ require_once('quizDB.php');
 
 			 		while ($row_q = $result_q->fetch(PDO::FETCH_ASSOC)) {
 			 			$q_id = $row_q['id'];
-			 			// echo $q_id."<br/>";
 			 		}
 
 			 		// create answers
@@ -84,10 +83,6 @@ require_once('quizDB.php');
 				}
 			}
 		}
-
-			
-		// 	echo $username."<br />";
-
 	?>
 </div>
 
