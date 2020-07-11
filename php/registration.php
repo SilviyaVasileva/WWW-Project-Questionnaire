@@ -71,7 +71,7 @@ require_once('quizDB.php');
 			<input type="checkbox" name="userType[]" id="userType" value="lector">
 
 			<input type="submit" name="createUser" value="Регистрирай се">
-			<p><a href="login.php">Влез в профил</a></p>
+			<p><a href="../index.php">Влез в профил</a></p>
 			<div class="messages">
 				<p id="onError"></p>
   			</div>
