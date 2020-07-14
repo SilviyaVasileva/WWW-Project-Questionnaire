@@ -1,6 +1,5 @@
-
 <?php
-
+// create database connection 
 $host = "localhost";
 $dbname = "quiz1";
 $user = "root";

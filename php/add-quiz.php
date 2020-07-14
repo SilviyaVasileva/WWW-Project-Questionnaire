@@ -1,4 +1,5 @@
 <?php
+// add database connection
 require_once('quizDB.php');
 ?>
 <!DOCTYPE html>
@@ -12,7 +13,9 @@ require_once('quizDB.php');
 
 <div class="phpTest">
 	<?php
+		// start a session
 		session_start();
+
 		// check if the user is logged in
 		if(isset($_SESSION['user'])) {
 			echo '<nav class="navigation"><ul>';
@@ -22,6 +25,7 @@ require_once('quizDB.php');
 			// if the user is logged and its lector in shows the form
 			if ($_SESSION['userType'] == 'lector') {
 
+				//  get all quizzes in created by the user
 				$sql_tests = "SELECT * FROM `test` WHERE testType = 'test' AND creatorId = ".$_SESSION['id'];
 			 	$result_tests = $conn->query($sql_tests) or die("failed!");
 
@@ -70,6 +74,7 @@ require_once('quizDB.php');
 			 		$answ3 = $_POST['answ3'];
 			 		$answ4 = $_POST['answ4'];
 
+					// get all test in created by the user
 					$sql_create_answ1 = "INSERT INTO `answer` (questionId, answerNumber, answerDescription) VALUES (?,?,?)";
 					$stmtinsert_answ1 = $conn->prepare($sql_create_answ1);
 					$result_answ1 = $stmtinsert_answ1->execute([$q_id, 1, $answ1]);

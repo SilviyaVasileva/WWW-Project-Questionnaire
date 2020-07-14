@@ -1,4 +1,5 @@
 <?php
+// database connection
 require_once('quizDB.php');
 ?>
 <!DOCTYPE html>
@@ -13,7 +14,7 @@ require_once('quizDB.php');
 <div class="phpReg">
 	<?php
 		if (isset($_POST['createUser'])) {
-		 	// echo "user id created";
+			// get user data
 		 	$username = $_POST['username'];
 		 	$email = $_POST['email'];
 		 	$password = $_POST['password'];
@@ -25,15 +26,19 @@ require_once('quizDB.php');
 		 		$utype = $t;
 			}
 			if($password==$confirmPassword) {
+				// saves the registration
 				$sql = "INSERT INTO user (username, email, password, FN, userType) VALUES (?,?,?,?,?)";
 				$stmtinsert = $conn->prepare($sql);
 				$result = $stmtinsert->execute([$username, $email, sha1($password), $fn, $utype]);
 				if($result) {
+					// start a session
 					session_start();
 
+					// user's data
 					$sql_u = "SELECT * FROM `user` WHERE email = '".$email."' and password = '".sha1($password)."'";
 				 	$result_u = $conn->query($sql_u) or die("failed!");
 
+		 			// create user session
 					while($row = $result_u->fetch(PDO::FETCH_ASSOC)) {
 						$_SESSION['email']=$row['email'];
 						$_SESSION['user']=$row['username'];
@@ -43,7 +48,6 @@ require_once('quizDB.php');
 					}
 
 					header("Location: menu.php");
-					//this is for the redirection. Need to create a session
 				}
 		 	}
 		} 

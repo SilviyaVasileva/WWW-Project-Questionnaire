@@ -1,5 +1,7 @@
 <?php
+// database connection
 require_once('quizDB.php');
+// function for getting a test
 require_once('test-query.php');
 ?>
 
@@ -13,17 +15,23 @@ require_once('test-query.php');
 </head>
 <body>
     <?php 
+        // $rows is an array with all the questions and answer in the test
+
+        // gets the answers number
         $endIndex = count($rows);
         $testName = "";
 
+        // if $rows is empty shows a message
         if($endIndex == 0) {
             $testName = "No questions in the test.";
         }
         else {
+            // get test name and id
             $testName = $rows[0]['testName'];
             $testId = $rows[0]['testId'];
 
             $questionDescription = "";
+            // get the queston id from the session
             $questionIndex = $_SESSION['questionId'];
             $startIndex = 0;
             // goes to the next question
@@ -38,7 +46,8 @@ require_once('test-query.php');
             }
             // goes to the menu
             
-            if($questionIndex >= $startIndex && $questionIndex <= $endIndex - 3) {
+            // sets the current question and answers
+            if($questionIndex >= $startIndex && $questionIndex <= $endIndex - 4) {
                 $questionDescription = $rows[$questionIndex]['questionDescription'];
                 $questionId = $rows[$questionIndex]['questionId'];
                 $answers = array();
@@ -49,7 +58,7 @@ require_once('test-query.php');
                 }
             }
             
-            //userAnswers
+            // saves userAnswers
             
             $buttonInd = 0;
             if (isset($_POST['answ'])) {
@@ -59,10 +68,15 @@ require_once('test-query.php');
             
         }
 
+        // check if the test is finished
         if(isset($_POST['finishBtn'])){
 
             // do the math.....
+
+            // gets the user answers and saves a test in the user_test table
             $userAnswers = $_SESSION['userAnswers'];
+
+            // the points from the test
             $points = 0;
             $sql = "INSERT INTO `user_test` (userId, solvedTestId) VALUES (?,?)";
                 $stmtinsert = $conn->prepare($sql);
@@ -70,6 +84,8 @@ require_once('test-query.php');
 
             $solvedTest = 0;
             $answerTable = array();
+
+            // gets the user_test id
             if ($result) {
                 $sql_tests = "SELECT id FROM `user_test` ORDER BY id DESC LIMIT 1";
                 $result_tests = $conn->query($sql_tests) or die("failed!");
@@ -78,6 +94,7 @@ require_once('test-query.php');
             }
             }
 
+            // add the user answers in the database
             for ($i=0; $i < $endIndex/4; $i++) { 
                 $qId = $rows[$i*4]['questionId'];
                 $corrAnswer = $rows[$i*4]['correctAnswerNumber'];

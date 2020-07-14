@@ -1,4 +1,5 @@
 <?php
+// add database connection
 require_once('quizDB.php');
 ?>
 <!DOCTYPE html>
@@ -12,17 +13,24 @@ require_once('quizDB.php');
 
 <div class="phpQuiz">
 	<?php
+		// start a session
 		session_start();
+
+		// check if the user is logged in
 		if(isset($_SESSION['user'])) {
 			echo '<nav class="navigation"><ul>';
 			echo '<li><a href="../php/logout.php?logout">Изход</a></li>';
 			echo '<li><a href="../php/menu.php?menu">Меню</a></li>';
 			echo '</ul></nav><br>';
+
+			// check the user's type and if the user is lector show the form
 			if ($_SESSION['userType'] == 'lector') {
 
+				// get all tests in created by the user
 				$sql_tests = "SELECT * FROM `test` WHERE testType like '%quiz%' AND creatorId = ".$_SESSION['id'];
 			 	$result_tests = $conn->query($sql_tests) or die("Failed!");
 
+			 	// create a test in the database
 				if (isset($_POST['createQuestionnarie'])) {
 					$testName = $_POST['questionnarieName'];
 			 		$sql = "INSERT INTO test (testName, creatorId, testType) VALUES (?,?,?)";
@@ -39,8 +47,6 @@ require_once('quizDB.php');
 			 		// Create a question
 			 		$testId = $_POST['existingQuestionnarieNames'];
 				 	$question = $_POST['question'];
-
-				 	// echo $testId."  въпрос ".$question;
 
 					 	$sql_create_q = "INSERT INTO `question` (testId, questionDescription, points, correctAnswerNumber) VALUES (?,?,?,?)";
 						$stmtinsert_question = $conn->prepare($sql_create_q);
@@ -65,6 +71,7 @@ require_once('quizDB.php');
 			 		$answ3 = $_POST['answ3'];
 			 		$answ4 = $_POST['answ4'];
 
+			 		// add answers in the database
 					$sql_create_answ1 = "INSERT INTO `answer` (questionId, answerNumber, answerDescription) VALUES (?,?,?)";
 					$stmtinsert_answ1 = $conn->prepare($sql_create_answ1);
 					$result_answ1 = $stmtinsert_answ1->execute([$q_id, 1, $answ1]);
@@ -110,7 +117,6 @@ require_once('quizDB.php');
 		<label for="question"><b>Въпрос</b></label>
 		<input type="text" name="question" required>
 		<br><br>
-		<!-- <input id="points" type="number" name="points" placeholder="Точки за въпроса"> -->
 		<label for="answ1"><b>Отговор 1 </b></label>
 		<input type="text" name="answ1" required>
 		<br><br>
@@ -123,14 +129,6 @@ require_once('quizDB.php');
 		<label for="answ4"><b>Отговор 4</b></label>
 		<input type="text" name="answ4" required>
 		<br><br>
-
-		<!-- select name="correct_answer">
-			<option value="1">1</option>
-			<option value="2">2</option>
-			<option value="3">3</option>
-			<option value="4">4</option>
-		</select> -->
-
 
 		<input type="submit" name="createQuestion" value="Добави">
 		<br>
