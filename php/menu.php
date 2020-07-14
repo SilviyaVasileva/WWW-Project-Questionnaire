@@ -48,6 +48,7 @@ require_once('quizDB.php');
 				echo '<li><a href="../php/add-questionnarie.php?add-questionnarie">Добави анкета</a><br/></li>';
 			}
 
+			// open the test/quiz
 			if(isset($_POST['testId'])){
 				$_SESSION['testId'] = $_POST['testId'];
 				header("location:get-test.php");
