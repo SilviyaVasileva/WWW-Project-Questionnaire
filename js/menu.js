@@ -41,5 +41,5 @@ const makeGridQuiz = (rows, cols) => {
   }
 };
 
-makeGridQuestionnarie(3, 10);
-makeGridQuiz(3, 10);
+makeGridQuestionnarie(100, 5);
+makeGridQuiz(100, 5);
