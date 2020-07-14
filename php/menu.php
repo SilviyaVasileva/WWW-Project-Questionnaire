@@ -48,14 +48,14 @@ require_once('quizDB.php');
 				echo '<li><a href="../php/add-quiz.php?add-quiz">Добави тест</a></li>';
 				echo '<li><a href="../php/add-questionnarie.php?add-questionnarie">Добави анкета</a><br/></li>';
 			}
-			echo '<li><a href="../php/results.php">Резултати</li>';
-
+			echo '<li><a href="../php/results.php">Резултати</a></li>';
+			echo '</ul></nav><br>';
 			// open the test/quiz
 			if(isset($_POST['testId'])){
 				$_SESSION['testId'] = $_POST['testId'];
 				header("location:get-test.php");
 			}
-			echo '</ul></nav><br>';
+			
 		}
 		else{
 			echo "Влезте в профил, за да може да видите съдържанието <br>";

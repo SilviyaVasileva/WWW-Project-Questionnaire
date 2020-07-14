@@ -21,7 +21,13 @@ require_once('quizDB.php');
 		if(isset($_SESSION['user'])) {
 			echo '<nav class="navigation"><ul>';
 			echo '<li><a href="../php/logout.php?logout">Изход</a></li>';
+			
+			if ($_SESSION['userType'] == 'lector') {
+				//if the user is a lector add the add a quiz and a questionnarie option
+				echo '<li><a href="../php/add-quiz.php?add-quiz">Добави тест</a></li>';
+			}
 			echo '<li><a href="../php/menu.php?menu">Меню</a></li>';
+			echo '<li><a href="../php/results.php">Резултати</a></li>';
 			echo '</ul></nav><br>';
 
 			// check the user's type and if the user is lector show the form
