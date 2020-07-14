@@ -4,6 +4,8 @@ require_once('quizDB.php');
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="stylesheet" type="text/css" href="../css/menu.css">
+	<link rel="stylesheet" type="text/css" href="../css/navigation.css">
 	<title>Тестът е предаден</title>
 </head>
 <body>
@@ -11,10 +13,10 @@ require_once('quizDB.php');
 	session_start();
 	// check if the user is logged in
 	if(isset($_SESSION['user'])) {
-		echo '<ul>';
+		echo '<nav class="navigation"><ul>';
 		echo '<li><a href="../php/logout.php?logout">Изход</a><br/></li>';
 		echo '<li><a href="../php/menu.php?menu">Меню</a></li>';
-		echo '</ul>';
+		echo '</ul></nav><br>';
 		if ($_SESSION['testId']) {
 			$testId = $_SESSION['testId'];
 			$sql_test = "SELECT testType FROM `test` WHERE `test`.id = ".$testId;
@@ -29,10 +31,10 @@ require_once('quizDB.php');
 			}
 			if($testType == 'test') {
 				//
-				echo "<h2>Вашите точки са ".$_SESSION['points']."</h2>";
+				echo '<h2 class="points">Вашите точки са '.$_SESSION['points'].'</h2>';
 			}
 			else {
-				echo "<h2>Вашите отговори бяха предадени успешно!</h2>";
+				echo '<h2 class="points">Вашите отговори бяха предадени успешно!</h2>';
 			}
 		}
 	}

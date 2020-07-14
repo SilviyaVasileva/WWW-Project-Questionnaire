@@ -6,6 +6,7 @@ require_once('quizDB.php');
 <head>
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="../css/menu.css">
+	<link rel="stylesheet" type="text/css" href="../css/navigation.css">
 	<title>Меню</title>
 </head>
 <body>
@@ -40,20 +41,21 @@ require_once('quizDB.php');
 				$t_rows[] = $t_row;
 			}
 			echo '<nav class="navigation"><ul>';
-			echo '<li><a href="../php/logout.php?logout">Изход</a></li>';
+			echo '<li><a href="../php/logout.php">Изход</a></li>';
 
 			if ($_SESSION['userType'] == 'lector') {
 				//if the user is a lector add the add a quiz and a questionnarie option
 				echo '<li><a href="../php/add-quiz.php?add-quiz">Добави тест</a></li>';
 				echo '<li><a href="../php/add-questionnarie.php?add-questionnarie">Добави анкета</a><br/></li>';
 			}
+			echo '<li><a href="../php/results.php">Резултати</li>';
 
 			// open the test/quiz
 			if(isset($_POST['testId'])){
 				$_SESSION['testId'] = $_POST['testId'];
 				header("location:get-test.php");
 			}
-			echo '</ul=navigationContent></nav><br>';
+			echo '</ul></nav><br>';
 		}
 		else{
 			echo "Влезте в профил, за да може да видите съдържанието <br>";

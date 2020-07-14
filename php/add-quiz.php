@@ -7,6 +7,7 @@ require_once('quizDB.php');
 <head>
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="../css/quiz-and-questionnarie.css">
+	<link rel="stylesheet" type="text/css" href="../css/navigation.css">
 	<title>Създаване на тест</title>
 </head>
 <body>

@@ -6,15 +6,21 @@ require_once('quizDB.php');
 <head>
 	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../css/result.css">
+	<link rel="stylesheet" type="text/css" href="../css/result.css">
+	<link rel="stylesheet" type="text/css" href="../css/navigation.css">
     <title>Резултати от тестове</title>
 </head>
 <body>
 
 <?php
 	session_start();
+	
 	if(isset($_SESSION['user'])){
-
+		echo '<nav class="navigation"><ul>';
+		echo '<li><a href="../php/logout.php?logout">Изход</a><br/></li>';
+		echo '<li><a href="../php/menu.php?menu">Меню</a></li>';
+		echo '</ul></nav><br>';
+		
 		echo '<p><span id="quiz">Тестове</span> <span id="questionnarie">Анкети</span></p>';
 
 		$sql_test = "SELECT username, `test`.`testName`, SUM(`user_answer`.`points`) AS points FROM `user` JOIN `user_test` ON `user`.id = `user_test`.userId JOIN `user_answer` ON `user_test`.id = `user_answer`.userSolvedTestId JOIN `test` ON `user_test`.`solvedTestId` = `test`.`id` WHERE `test`.`testType` = 'test' GROUP BY `user_answer`.`userSolvedTestId` ORDER BY `test`.`testType`, `test`.`testName`";

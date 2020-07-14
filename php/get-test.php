@@ -11,6 +11,7 @@ require_once('test-query.php');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../css/show-test.css">
+    <link rel="stylesheet" type="text/css" href="../css/navigation.css">
     <title>Document</title>
 </head>
 <body>
@@ -120,7 +121,7 @@ require_once('test-query.php');
             }
 
             $_SESSION['points'] = $points;
-            header("location:menu.php");
+            header("location:points.php");
         }
     ?>
     <div class="menu-page-ref">
