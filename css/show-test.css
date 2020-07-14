@@ -102,3 +102,41 @@ h2{
   color:white;
   
 }
+
+.navigation {
+  width: 100%;
+  position: fixed;
+  line-height: 35px;
+  margin-top:-15px;
+}
+
+.navigation ul {
+  position: absolute;
+  padding: 5px 0 5px 15px;
+  width: 100%;
+  float: left;
+}
+
+.navigation ul li {
+  background-color: #808080;
+  width: 115px;
+  text-align: center;
+  float: left;
+  list-style: none;
+  position: relative;
+  border: 2px black solid;
+  border-radius: 6px;
+  padding: 0px 5px 0 5px ;
+  margin: 0 0 0 15px;
+}
+
+.navigation ul li:hover{
+  background-color: darkgray;
+  color:white;
+}
+
+.navigation ul li a{
+  text-decoration: none;
+  color:black;
+  font-weight: bold;
+}

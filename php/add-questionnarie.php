@@ -14,9 +14,10 @@ require_once('quizDB.php');
 	<?php
 		session_start();
 		if(isset($_SESSION['user'])) {
-			echo '<a href="../php/logout.php">Изход</a> ';
-			echo ' <a href="../php/menu.php">Меню</a>';
-
+			echo '<nav class="navigation"><ul>';
+			echo '<li><a href="../php/logout.php?logout">Изход</a></li>';
+			echo '<li><a href="../php/menu.php?menu">Меню</a></li>';
+			echo '</ul></nav><br>';
 			if ($_SESSION['userType'] == 'lector') {
 
 				$sql_tests = "SELECT * FROM `test` WHERE testType like '%quiz%' AND creatorId = ".$_SESSION['id'];

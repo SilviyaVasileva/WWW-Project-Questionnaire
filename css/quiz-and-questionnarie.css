@@ -4,10 +4,49 @@ body {
     font-family: 'Times New Roman', Times, serif;
     background: url('../img/Questionnaire.jpg') no-repeat;
     background-size: 100vw;
+    overflow-x: hidden;
+}
+
+.navigation {
+    width: 100%;
+    line-height: 35px;
+    margin-top:-20px;
+}
+
+.navigation ul {
+    background-color: #808080;
+    position: absolute;
+    padding: 5px 0 5px 15px;
+    width: 100%;
+    float: left;
+}
+
+.navigation ul li {
+    width: 115px;
+    text-align: center;
+    float: left;
+    list-style: none;
+    position: relative;
+    border: 2px black solid;
+    border-radius: 6px;
+    padding: 0px 5px 0 5px ;
+    margin: 0 0 0 15px;
+}
+
+.navigation ul li:hover{
+    background-color: darkgray;
+    color:white;
+}
+
+.navigation ul li a{
+    text-decoration: none;
+    color:black;
+    font-weight: bold;
 }
 
 .quizForm,
 .questionnarieForm {
+    margin-top:55px;
     margin-bottom: 10px;
 }
 

@@ -55,11 +55,8 @@ require_once('test-query.php');
             if (isset($_POST['answ'])) {
                 $_SESSION['userAnswers'][$questionIndex/4] = $_POST['answ'];
                 $buttonInd = $_POST['answ'];
-                echo $buttonInd."string";
             }
-            else {
-                echo $buttonInd."string";
-            }
+            
         }
 
         if(isset($_POST['finishBtn'])){
@@ -111,7 +108,7 @@ require_once('test-query.php');
     ?>
     <div class="menu-page-ref">
         <?php 
-            echo '<a href="../php/menu.php?menu">Меню</a>';
+            echo '<nav class="navigation"><ul><li><a href="../php/menu.php?menu">Меню</a></li></ul></nav>';
         ?>
     </div>
     <script type="text/javascript">

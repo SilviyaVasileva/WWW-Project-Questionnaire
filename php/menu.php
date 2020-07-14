@@ -39,19 +39,20 @@ require_once('quizDB.php');
 			while($t_row = $result_tests->fetch(PDO::FETCH_ASSOC)) {
 				$t_rows[] = $t_row;
 			}
-
-			echo '<a href="../php/logout.php?logout">Изход</a>   ';
+			echo '<nav class="navigation"><ul>';
+			echo '<li><a href="../php/logout.php?logout">Изход</a></li>';
 
 			if ($_SESSION['userType'] == 'lector') {
 				//if the user is a lector add the add a quiz and a questionnarie option
-				echo '<a href="../php/add-quiz.php?add-quiz">Добави тест</a>   ';
-				echo '<a href="../php/add-questionnarie.php?add-questionnarie">Добави анкета</a><br/>';
+				echo '<li><a href="../php/add-quiz.php?add-quiz">Добави тест</a></li>';
+				echo '<li><a href="../php/add-questionnarie.php?add-questionnarie">Добави анкета</a><br/></li>';
 			}
 
 			if(isset($_POST['testId'])){
 				$_SESSION['testId'] = $_POST['testId'];
 				header("location:get-test.php");
 			}
+			echo '</ul=navigationContent></nav><br>';
 		}
 		else{
 			echo "Влезте в профил, за да може да видите съдържанието <br>";
