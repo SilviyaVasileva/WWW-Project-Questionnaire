@@ -158,7 +158,7 @@ require_once('quizDB.php');
 		<input type="submit" name="createQuiz" value="Добави">
 		<br>
 	</form>
-
+	<div class="contentsOfTest">
 	<form class="addQuestion" action="add-quiz.php" method="post">
 		<h2>Добави въпрос:</h2>
 		<br>
@@ -205,7 +205,8 @@ require_once('quizDB.php');
 	<!-- edit question -->
 
 	<form class="editQuestions" action="add-quiz.php" method="post">
-		<select name="QutionNames">
+	<h2>Промени въпрос:</h2><br>
+		<select name="QuestionNames">
 			<?php 
 			while ($row_q = $result_question->fetch(PDO::FETCH_ASSOC)):;?>
 			<option value="<?php echo $row_q['id'] ?>"><?php echo $row_q['questionDescription'];?></option>
@@ -243,7 +244,7 @@ require_once('quizDB.php');
 		<input type="submit" name="editQuestion" value="Промени">
 		<br>
 	</form>
-
+	</div>
 </div>
 
 </body>

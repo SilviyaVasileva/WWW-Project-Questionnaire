@@ -7,46 +7,9 @@ body {
     overflow-x: hidden;
 }
 
-.navigation {
-    width: 100%;
-    line-height: 35px;
-    margin-top:-20px;
-}
-
-.navigation ul {
-    background-color: #808080;
-    position: absolute;
-    padding: 5px 0 5px 15px;
-    width: 100%;
-    float: left;
-}
-
-.navigation ul li {
-    width: 115px;
-    text-align: center;
-    float: left;
-    list-style: none;
-    position: relative;
-    border: 2px black solid;
-    border-radius: 6px;
-    padding: 0px 5px 0 5px ;
-    margin: 0 0 0 15px;
-}
-
-.navigation ul li:hover{
-    background-color: darkgray;
-    color:white;
-}
-
-.navigation ul li a{
-    text-decoration: none;
-    color:black;
-    font-weight: bold;
-}
-
 .quizForm,
 .questionnarieForm {
-    margin-top:55px;
+    margin-top: 55px;
     margin-bottom: 10px;
 }
 
@@ -56,7 +19,7 @@ div form {
     background-color: #808080;
     padding: 5px 0 15px 0;
     border-radius: 8px;
-    margin-left:10%;
+    margin-left: 10%;
     box-shadow: 0 0 10px 2px;
 }
 
@@ -84,14 +47,16 @@ label[for="questionnarieName"] {
 }
 
 select[name="existingQuizNames"],
-select[name="existingQuestionnarieNames"]{
+select[name="existingQuestionnarieNames"],
+select[name="QuestionNames"] {
     width: 250px;
-    margin-left:25%;
+    margin-left: 25%;
 }
 
 input[name="createQuiz"],
 input[name="createQuestionnarie"],
-input[name="createQuestion"] {
+input[name="createQuestion"],
+input[name="editQuestion"] {
     float: none;
     margin-left: 15%;
     background-color: darkgray;
@@ -113,6 +78,23 @@ input[name="questionnarieName"] {
     margin-left: 13%;
 }
 
-.addNewQuiz,.addNewQuestionnarie{
+.addNewQuiz,
+.addNewQuestionnarie {
+    margin-left:250px;
     margin-bottom: 10px;
+}
+
+.contentsOfTest {
+    display: grid;
+    grid-template-columns: 460px 460px;
+    column-gap: 10px;
+}
+
+.addQuestion {
+    width: 450px;
+    margin-left: 50px;
+}
+
+.editQuestions {
+    width: 450px;
 }
