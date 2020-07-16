@@ -97,6 +97,8 @@ require_once('quizDB.php');
 					$stmtinsert_answ4 = $conn->prepare($sql_create_answ4);
 					$result_answ4 = $stmtinsert_answ4->execute([$q_id, 4, $answ4]);
 				}
+
+				
 				$sql_q = "SELECT * FROM `test` JOIN `question` ON `test`.`id` = `question`.`testId` WHERE `test`.`creatorId` = '".$_SESSION['id']."'";
 			 	$result_question = $conn->query($sql_q) or die("failed!");
 

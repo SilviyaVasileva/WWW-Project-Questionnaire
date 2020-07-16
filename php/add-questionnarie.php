@@ -96,6 +96,51 @@ require_once('quizDB.php');
 					$stmtinsert_answ4 = $conn->prepare($sql_create_answ4);
 					$result_answ4 = $stmtinsert_answ4->execute([$q_id, 4, $answ4]);
 				}
+
+				// edit questionnarie
+				$sql_q = "SELECT * FROM `test` JOIN `question` ON `test`.`id` = `question`.`testId` WHERE `test`.`testType`='quiz' and `test`.`creatorId` = '".$_SESSION['id']."'";
+			 	$result_question = $conn->query($sql_q) or die("failed!");
+
+				if (isset($_POST['editQuestion'])) {
+					$editQuestionID = $_POST['QutionNames'];
+					$editQuestion = $_POST['editQuestionDescr'];
+
+				 	$sqlEditQ = "UPDATE `question` SET `questionDescription` = '".$editQuestion."'  WHERE `id` = '".$editQuestionID."'";
+				 	$stmtinsertEditQ = $conn->prepare($sqlEditQ);
+					$resultEditQ = $stmtinsertEditQ->execute([]);
+
+					$editAnsw1 = $_POST['editAnsw1'];
+			 		$editAnsw2 = $_POST['editAnsw2'];
+			 		$editAnsw3 = $_POST['editAnsw3'];
+			 		$editAnsw4 = $_POST['editAnsw4'];
+
+			 		$sql_a = "SELECT * FROM `answer` WHERE `answer`.`questionId` = '".$editQuestionID."'";
+			 		$result_answ = $conn->query($sql_a) or die("failed!");
+
+			 		$answIds = array();
+
+			 		while ($answ = $result_answ->fetch(PDO::FETCH_ASSOC)) {
+			 			$answIds[] = $answ['id'];
+			 			echo $answ['id']."<br/>";
+			 		}
+
+					$sql_create_answ1 = "UPDATE `answer` SET `answerNumber` = 1, `answerDescription`= '".$editAnsw1."' WHERE `id` = '".$answIds[0]."'";
+					$stmtinsert_answ1 = $conn->prepare($sql_create_answ1);
+					$result_answ1 = $stmtinsert_answ1->execute([]);
+
+					$sql_create_answ2 = "UPDATE `answer` SET `answerNumber` = 2, `answerDescription`= '".$editAnsw2."' WHERE `id` = '".$answIds[1]."'";
+					$stmtinsert_answ2 = $conn->prepare($sql_create_answ2);
+					$result_answ2 = $stmtinsert_answ2->execute([]);
+
+					$sql_create_answ3 = "UPDATE `answer` SET `answerNumber` = 3, `answerDescription`= '".$editAnsw3."' WHERE `id` = '".$answIds[2]."'";
+					$stmtinsert_answ3 = $conn->prepare($sql_create_answ3);
+					$result_answ3 = $stmtinsert_answ3->execute([]);
+
+					$sql_create_answ4 = "UPDATE `answer` SET `answerNumber` = 4, `answerDescription`= '".$editAnsw4."' WHERE `id` = '".$answIds[3]."'";
+					$stmtinsert_answ4 = $conn->prepare($sql_create_answ4);
+					$result_answ4 = $stmtinsert_answ4->execute([]);
+					header("location:add-quiz.php");
+				}
 			}
 		}
 	?>
@@ -140,6 +185,35 @@ require_once('quizDB.php');
 		<input type="submit" name="createQuestion" value="Добави">
 		<br>
 	</form>
+
+	<form class="editQuestions" action="add-quiz.php" method="post">
+		<select name="QutionNames">
+			<?php 
+			while ($row_q = $result_question->fetch(PDO::FETCH_ASSOC)):;?>
+			<option value="<?php echo $row_q['id'] ?>"><?php echo $row_q['questionDescription'];?></option>
+			<?php endwhile;?>
+		</select>
+		<br><br>
+		<label for="question"><b>Въпрос</b></label>
+		<input type="text" name="editQuestionDescr" required>
+		<br><br>
+		<label for="answ1"><b>Отговор 1</b></label>
+		<input type="text" name="editAnsw1" required>
+		<br><br>
+		<label for="answ2"><b>Отговор 2</b></label>
+		<input type="text" name="editAnsw2" required>
+		<br><br>
+		<label for="answ3"><b>Отговор 3</b></label>
+		<input type="text" name="editAnsw3" required>
+		<br><br>
+		<label for="answ4"><b>Отговор 4</b></label>
+		<input type="text" name="editAnsw4" required>
+		<br><br>
+
+		<input type="submit" name="editQuestion" value="Промени">
+		<br>
+	</form>
+
 </div>
 
 </body>
