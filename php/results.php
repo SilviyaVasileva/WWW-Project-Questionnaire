@@ -28,19 +28,37 @@ require_once('quizDB.php');
 		
 		echo '<p><span id="quiz">Тестове</span> <span id="questionnarie">Анкети</span></p>';
 
-		$sql_test = "SELECT username, `test`.`testName`, SUM(`user_answer`.`points`) AS points FROM `user` JOIN `user_test` ON `user`.id = `user_test`.userId JOIN `user_answer` ON `user_test`.id = `user_answer`.userSolvedTestId JOIN `test` ON `user_test`.`solvedTestId` = `test`.`id` WHERE `test`.`testType` = 'test' GROUP BY `user_answer`.`userSolvedTestId` ORDER BY `test`.`testType`, `test`.`testName`";
-		$result = $conn->query($sql_test) or die("NOOOOOOOO");
-		$result->execute([]);
-		$rows = array();
-		while($row = $result->fetch(PDO::FETCH_ASSOC)) {
-			$rows[] = $row;
-		}
-		if (count($rows) > 0) { 
-			echo '<table id="quizResult"><tr><th>Потребител</th><th>Име на тест</th><th>Точки</th></tr>';
-			foreach ($rows as $row) {
-				echo "<tr><td>".$row['username']."</td><td>".$row['testName']."</td><td>".$row['points']."</td></tr>";
+		if ($_SESSION['userType'] == 'lector') {
+			$sql_test = "SELECT username, `test`.`testName`, SUM(`user_answer`.`points`) AS points FROM `user` JOIN `user_test` ON `user`.id = `user_test`.userId JOIN `user_answer` ON `user_test`.id = `user_answer`.userSolvedTestId JOIN `test` ON `user_test`.`solvedTestId` = `test`.`id` WHERE `test`.`testType` = 'test' GROUP BY `user_answer`.`userSolvedTestId` ORDER BY `test`.`testType`, `test`.`testName`";
+			$result = $conn->query($sql_test) or die("NOOOOOOOO");
+			$result->execute([]);
+			$rows = array();
+			while($row = $result->fetch(PDO::FETCH_ASSOC)) {
+				$rows[] = $row;
 			}
-			echo '</table>';
+			if (count($rows) > 0) { 
+				echo '<table id="quizResult"><tr><th>Потребител</th><th>Име на тест</th><th>Точки</th></tr>';
+				foreach ($rows as $row) {
+					echo "<tr><td>".$row['username']."</td><td>".$row['testName']."</td><td>".$row['points']."</td></tr>";
+				}
+				echo '</table>';
+			}
+		}
+		else {
+			$sql_test = "SELECT `test`.`testName`, SUM(`user_answer`.`points`) AS points FROM `user` JOIN `user_test` ON `user`.id = `user_test`.userId JOIN `user_answer` ON `user_test`.id = `user_answer`.userSolvedTestId JOIN `test` ON `user_test`.`solvedTestId` = `test`.`id` WHERE `test`.`testType` = 'test' and `user`.id = '".$_SESSION['id']."' GROUP BY `user_answer`.`userSolvedTestId` ORDER BY `test`.`testType`, `test`.`testName`";
+			$result = $conn->query($sql_test) or die("NOOOOOOOO");
+			$result->execute([]);
+			$rows = array();
+			while($row = $result->fetch(PDO::FETCH_ASSOC)) {
+				$rows[] = $row;
+			}
+			if (count($rows) > 0) { 
+				echo '<table id="quizResult"><tr><th>Име на тест</th><th>Точки</th></tr>';
+				foreach ($rows as $row) {
+					echo "<tr><td>".$row['testName']."</td><td>".$row['points']."</td></tr>";
+				}
+				echo '</table>';
+			}
 		}
 
 		$sql_quiz = "SELECT `test`.`testName`, `question`.`questionDescription`, `answer`.`answerDescription`, COUNT(`answer`.`id`) as answCount FROM `user` JOIN `user_test` ON `user`.id = `user_test`.userId JOIN `user_answer` ON `user_test`.id = `user_answer`.userSolvedTestId JOIN `test` ON `user_test`.`solvedTestId` = `test`.`id` JOIN `question` ON `question`.`id` = `user_answer`.`questionId` JOIN `answer` ON `answer`.`id` = `user_answer`.`answerId` WHERE `test`.`testType` = 'quiz' GROUP BY `answer`.`id` ORDER BY`test`.`testName`, `answer`.`id` ";
