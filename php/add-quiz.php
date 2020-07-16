@@ -42,7 +42,7 @@ require_once('quizDB.php');
 					$stmtinsert = $conn->prepare($sql);
 					$result = $stmtinsert->execute([$testName, $_SESSION['id']]);
 					if($result) {
-			            header("location:add-quiz.php");	
+			            header("location:add-quiz.php?add-quiz");	
 					}
 					else {
 						echo "Wrong input! <br />";
@@ -142,7 +142,7 @@ require_once('quizDB.php');
 					$sql_create_answ4 = "UPDATE `answer` SET `answerNumber` = 4, `answerDescription`= '".$editAnsw4."' WHERE `id` = '".$answIds[3]."'";
 					$stmtinsert_answ4 = $conn->prepare($sql_create_answ4);
 					$result_answ4 = $stmtinsert_answ4->execute([]);
-					header("location:add-quiz.php");
+					header("location:add-quiz.php?add-quiz");
 				}
 			}
 		}
