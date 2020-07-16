@@ -126,7 +126,9 @@ require_once('test-query.php');
     ?>
     <div class="menu-page-ref">
         <?php 
-            echo '<nav class="navigation"><ul><li><a href="../php/menu.php?menu">Меню</a></li></ul></nav>';
+            echo '<nav class="navigation"><ul>
+            <li><a href="../php/menu.php?menu">Меню</a></li>
+            </ul></nav>';
         ?>
     </div>
     <script type="text/javascript">
