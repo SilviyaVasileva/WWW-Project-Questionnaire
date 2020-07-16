@@ -41,14 +41,14 @@ require_once('quizDB.php');
 				$t_rows[] = $t_row;
 			}
 			echo '<nav class="navigation"><ul>';
-			echo '<li><a href="../php/logout.php">Изход</a></li>';
+			echo '<li><a href="../php/logout.php?logout">Изход</a></li>';
 
 			if ($_SESSION['userType'] == 'lector') {
 				//if the user is a lector add the add a quiz and a questionnarie option
 				echo '<li><a href="../php/add-quiz.php?add-quiz">Добави тест</a></li>';
 				echo '<li><a href="../php/add-questionnarie.php?add-questionnarie">Добави анкета</a><br/></li>';
 			}
-			echo '<li><a href="../php/results.php">Резултати</a></li>';
+			echo '<li><a href="../php/results.php?results">Резултати</a></li>';
 			echo '</ul></nav><br>';
 			// open the test/quiz
 			if(isset($_POST['testId'])){

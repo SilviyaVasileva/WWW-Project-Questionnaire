@@ -27,7 +27,7 @@ require_once('quizDB.php');
 				echo '<li><a href="../php/add-quiz.php?add-quiz">Добави тест</a></li>';
 			}
 			echo '<li><a href="../php/menu.php?menu">Меню</a></li>';
-			echo '<li><a href="../php/results.php">Резултати</a></li>';
+			echo '<li><a href="../php/results.php?results">Резултати</a></li>';
 			echo '</ul></nav><br>';
 
 			// check the user's type and if the user is lector show the form
@@ -44,7 +44,7 @@ require_once('quizDB.php');
 					$stmtinsert = $conn->prepare($sql);
 					$result = $stmtinsert->execute([$testName, $_SESSION['id'], 'quiz']);
 					if($result) {
-						header("location:add-questionnarie.php");
+						header("location:add-questionnarie.php?add-questionnarie");
 					}
 					else {
 						echo "Wrong input! <br />";
@@ -139,7 +139,7 @@ require_once('quizDB.php');
 					$sql_create_answ4 = "UPDATE `answer` SET `answerNumber` = 4, `answerDescription`= '".$editAnsw4."' WHERE `id` = '".$answIds[3]."'";
 					$stmtinsert_answ4 = $conn->prepare($sql_create_answ4);
 					$result_answ4 = $stmtinsert_answ4->execute([]);
-					header("location:add-quiz.php");
+					header("location:add-quiz.php?add-quiz");
 				}
 			}
 		}
@@ -156,6 +156,7 @@ require_once('quizDB.php');
 		<input type="submit" name="createQuestionnarie" value="Добави">
 		<br>
 	</form>
+	<div class="contentsOfTest">
 	<form class="addQuestion" action="add-questionnarie.php" method="post">
 		<h2>Добави въпрос:</h2>
 		<br>
@@ -187,7 +188,9 @@ require_once('quizDB.php');
 	</form>
 
 	<form class="editQuestions" action="add-quiz.php" method="post">
-		<select name="QutionNames">
+	<h2>Добави въпрос:</h2>
+		<br>
+		<select name="QuestionNames">
 			<?php 
 			while ($row_q = $result_question->fetch(PDO::FETCH_ASSOC)):;?>
 			<option value="<?php echo $row_q['id'] ?>"><?php echo $row_q['questionDescription'];?></option>
@@ -213,7 +216,7 @@ require_once('quizDB.php');
 		<input type="submit" name="editQuestion" value="Промени">
 		<br>
 	</form>
-
+</div>
 </div>
 
 </body>

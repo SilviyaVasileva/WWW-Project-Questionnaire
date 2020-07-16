@@ -121,7 +121,7 @@ require_once('test-query.php');
             }
 
             $_SESSION['points'] = $points;
-            header("location:points.php");
+            header("location:points.php?points");
         }
     ?>
     <div class="menu-page-ref">
