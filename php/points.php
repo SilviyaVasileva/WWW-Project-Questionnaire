@@ -20,7 +20,7 @@ require_once('quizDB.php');
 		if ($_SESSION['testId']) {
 			$testId = $_SESSION['testId'];
 			$sql_test = "SELECT testType FROM `test` WHERE `test`.id = ".$testId;
-			$result = $conn->query($sql_test) or die("Cound.t get the test type");
+			$result = $conn->prepare($sql_test);
 			$result->execute([]);
 			$testType = '';
 			if ($result) {

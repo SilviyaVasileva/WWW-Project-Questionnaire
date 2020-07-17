@@ -36,7 +36,8 @@ require_once('quizDB.php');
 
 					// user's data
 					$sql_u = "SELECT * FROM `user` WHERE email = '".$email."' and password = '".sha1($password)."'";
-				 	$result_u = $conn->query($sql_u) or die("failed!");
+				 	$result_u = $conn->prepare($sql_u);
+				 	$result_u->execute([]);
 
 		 			// create user session
 					while($row = $result_u->fetch(PDO::FETCH_ASSOC)) {
@@ -44,10 +45,10 @@ require_once('quizDB.php');
 						$_SESSION['user']=$row['username'];
 						$_SESSION['id']=$row['id'];
 						$_SESSION['userType']=$row['userType'];
-		                header("location:../php/menu.php?menu");
+		                header("location:menu.php");
 					}
 
-					header("location:../php/menu.php?menu");
+					header("Location: menu.php");
 				}
 		 	}
 		} 

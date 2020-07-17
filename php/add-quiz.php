@@ -33,7 +33,8 @@ require_once('quizDB.php');
 
 				//  get all quizzes in created by the user
 				$sql_tests = "SELECT * FROM `test` WHERE testType = 'test' AND creatorId = ".$_SESSION['id'];
-			 	$result_tests = $conn->query($sql_tests) or die("failed!");
+			 	$result_tests = $conn->prepare($sql_tests);
+			 	$result_tests->execute([]);
 
 				if (isset($_POST['createQuiz'])) {
 					// create a test in db
@@ -42,7 +43,7 @@ require_once('quizDB.php');
 					$stmtinsert = $conn->prepare($sql);
 					$result = $stmtinsert->execute([$testName, $_SESSION['id']]);
 					if($result) {
-			            header("location:add-quiz.php?add-quiz");	
+			            header("location:add-quiz.php");	
 					}
 					else {
 						echo "Wrong input! <br />";
@@ -65,7 +66,8 @@ require_once('quizDB.php');
 				 	// Get question id
 
 				 	$sql_qid = "SELECT * FROM `question` WHERE questionDescription = '".$question."'";
-			 		$result_q = $conn->query($sql_qid) or die("failed!");
+			 		$result_q = $conn->prepare($sql_qid);
+			 		$result_q->execute([]);
 
 			 		$q_id = 0;
 
@@ -100,7 +102,8 @@ require_once('quizDB.php');
 
 				
 				$sql_q = "SELECT * FROM `test` JOIN `question` ON `test`.`id` = `question`.`testId` WHERE `test`.`creatorId` = '".$_SESSION['id']."'";
-			 	$result_question = $conn->query($sql_q) or die("failed!");
+			 	$result_question = $conn->prepare($sql_q);
+			 	$result_question->execute([]);
 
 				if (isset($_POST['editQuestion'])) {
 					$editQuestionID = $_POST['QutionNames'];
@@ -118,7 +121,8 @@ require_once('quizDB.php');
 			 		$editAnsw4 = $_POST['editAnsw4'];
 
 			 		$sql_a = "SELECT * FROM `answer` WHERE `answer`.`questionId` = '".$editQuestionID."'";
-			 		$result_answ = $conn->query($sql_a) or die("failed!");
+			 		$result_answ = $conn->prepare($sql_a);
+			 		$result_answ->execute([]);
 
 			 		$answIds = array();
 
@@ -142,7 +146,7 @@ require_once('quizDB.php');
 					$sql_create_answ4 = "UPDATE `answer` SET `answerNumber` = 4, `answerDescription`= '".$editAnsw4."' WHERE `id` = '".$answIds[3]."'";
 					$stmtinsert_answ4 = $conn->prepare($sql_create_answ4);
 					$result_answ4 = $stmtinsert_answ4->execute([]);
-					header("location:add-quiz.php?add-quiz");
+					header("location:add-quiz.php");
 				}
 			}
 		}
@@ -160,7 +164,7 @@ require_once('quizDB.php');
 		<input type="submit" name="createQuiz" value="Добави">
 		<br>
 	</form>
-	<div class="contentsOfTest">
+
 	<form class="addQuestion" action="add-quiz.php" method="post">
 		<h2>Добави въпрос:</h2>
 		<br>
@@ -207,8 +211,7 @@ require_once('quizDB.php');
 	<!-- edit question -->
 
 	<form class="editQuestions" action="add-quiz.php" method="post">
-	<h2>Промени въпрос:</h2><br>
-		<select name="QuestionNames">
+		<select name="QutionNames">
 			<?php 
 			while ($row_q = $result_question->fetch(PDO::FETCH_ASSOC)):;?>
 			<option value="<?php echo $row_q['id'] ?>"><?php echo $row_q['questionDescription'];?></option>
@@ -246,7 +249,7 @@ require_once('quizDB.php');
 		<input type="submit" name="editQuestion" value="Промени">
 		<br>
 	</form>
-	</div>
+
 </div>
 
 </body>

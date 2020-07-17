@@ -30,10 +30,10 @@ require_once('quizDB.php');
 
 		if ($_SESSION['userType'] == 'lector') {
 			$sql_test = "SELECT username, `test`.`testName`, SUM(`user_answer`.`points`) AS points FROM `user` JOIN `user_test` ON `user`.id = `user_test`.userId JOIN `user_answer` ON `user_test`.id = `user_answer`.userSolvedTestId JOIN `test` ON `user_test`.`solvedTestId` = `test`.`id` WHERE `test`.`testType` = 'test' GROUP BY `user_answer`.`userSolvedTestId` ORDER BY `test`.`testType`, `test`.`testName`";
-			$result = $conn->query($sql_test) or die("NOOOOOOOO");
-			$result->execute([]);
+			$stmt = $conn->prepare($sql_test);
+			$stmt->execute([]);
 			$rows = array();
-			while($row = $result->fetch(PDO::FETCH_ASSOC)) {
+			while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 				$rows[] = $row;
 			}
 			if (count($rows) > 0) { 
@@ -45,11 +45,11 @@ require_once('quizDB.php');
 			}
 		}
 		else {
-			$sql_test = "SELECT `test`.`testName`, SUM(`user_answer`.`points`) AS points FROM `user` JOIN `user_test` ON `user`.id = `user_test`.userId JOIN `user_answer` ON `user_test`.id = `user_answer`.userSolvedTestId JOIN `test` ON `user_test`.`solvedTestId` = `test`.`id` WHERE `test`.`testType` = 'test' and `user`.id = '".$_SESSION['id']."' GROUP BY `user_answer`.`userSolvedTestId` ORDER BY `test`.`testType`, `test`.`testName`";
-			$result = $conn->query($sql_test) or die("NOOOOOOOO");
-			$result->execute([]);
+			$sql_test = "SELECT `test`.`testName`, SUM(`user_answer`.`points`) AS points FROM `user` JOIN `user_test` ON `user`.id = `user_test`.userId JOIN `user_answer` ON `user_test`.id = `user_answer`.userSolvedTestId JOIN `test` ON `user_test`.`solvedTestId` = `test`.`id` WHERE `test`.`testType` = 'test' and `user`.id = ? GROUP BY `user_answer`.`userSolvedTestId` ORDER BY `test`.`testType`, `test`.`testName`";
+			$stmt = $conn->prepare($sql_test);
+			$stmt->execute([$_SESSION['id']]);
 			$rows = array();
-			while($row = $result->fetch(PDO::FETCH_ASSOC)) {
+			while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 				$rows[] = $row;
 			}
 			if (count($rows) > 0) { 
@@ -62,7 +62,7 @@ require_once('quizDB.php');
 		}
 
 		$sql_quiz = "SELECT `test`.`testName`, `question`.`questionDescription`, `answer`.`answerDescription`, COUNT(`answer`.`id`) as answCount FROM `user` JOIN `user_test` ON `user`.id = `user_test`.userId JOIN `user_answer` ON `user_test`.id = `user_answer`.userSolvedTestId JOIN `test` ON `user_test`.`solvedTestId` = `test`.`id` JOIN `question` ON `question`.`id` = `user_answer`.`questionId` JOIN `answer` ON `answer`.`id` = `user_answer`.`answerId` WHERE `test`.`testType` = 'quiz' GROUP BY `answer`.`id` ORDER BY`test`.`testName`, `answer`.`id` ";
-		$result_quiz = $conn->query($sql_quiz) or die("NOOOOOOOO");
+		$result_quiz = $conn->prepare($sql_quiz);
 		$result_quiz->execute([]);
 		$rows_q = array();
 		while($row = $result_quiz->fetch(PDO::FETCH_ASSOC)) {

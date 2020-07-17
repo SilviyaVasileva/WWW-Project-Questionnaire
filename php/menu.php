@@ -24,11 +24,13 @@ require_once('quizDB.php');
 
 			// if the user is logged shows all tests
 			$sql_tests = "SELECT id, testName FROM `test` WHERE testType = 'test'";
-		 	$result_tests = $conn->query($sql_tests) or die("failed!");
+		 	$result_tests = $conn->prepare($sql_tests);
+		 	$result_tests->execute([]);
 
 		 	// if the user is logged shows all quizzes
 			$sql_quiz = "SELECT id, testName FROM `test` WHERE testType = 'quiz'";
-			$result_quiz = $conn->query($sql_quiz) or die("failed!");
+			$result_quiz = $conn->prepare($sql_quiz) or die("failed!");
+		 	$result_quiz->execute([]);
 			 
 		 	// array for json
 		 	$q_rows = array();
@@ -41,14 +43,14 @@ require_once('quizDB.php');
 				$t_rows[] = $t_row;
 			}
 			echo '<nav class="navigation"><ul>';
-			echo '<li><a href="../php/logout.php?logout">Изход</a></li>';
+			echo '<li><a href="../php/logout.php">Изход</a></li>';
 
 			if ($_SESSION['userType'] == 'lector') {
 				//if the user is a lector add the add a quiz and a questionnarie option
 				echo '<li><a href="../php/add-quiz.php?add-quiz">Добави тест</a></li>';
 				echo '<li><a href="../php/add-questionnarie.php?add-questionnarie">Добави анкета</a><br/></li>';
 			}
-			echo '<li><a href="../php/results.php?results">Резултати</a></li>';
+			echo '<li><a href="../php/results.php">Резултати</a></li>';
 			echo '</ul></nav><br>';
 			// open the test/quiz
 			if(isset($_POST['testId'])){

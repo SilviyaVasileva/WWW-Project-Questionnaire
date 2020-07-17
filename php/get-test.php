@@ -89,7 +89,8 @@ require_once('test-query.php');
             // gets the user_test id
             if ($result) {
                 $sql_tests = "SELECT id FROM `user_test` ORDER BY id DESC LIMIT 1";
-                $result_tests = $conn->query($sql_tests) or die("failed!");
+                $result_tests = $conn->prepare($sql_tests) or die("failed!");
+                $result_tests->execute([]);
                 while($row_test = $result_tests->fetch(PDO::FETCH_ASSOC)) {
                     $solvedTest = $row_test['id'];
             }
@@ -121,14 +122,12 @@ require_once('test-query.php');
             }
 
             $_SESSION['points'] = $points;
-            header("location:points.php?points");
+            header("location:points.php");
         }
     ?>
     <div class="menu-page-ref">
         <?php 
-            echo '<nav class="navigation"><ul>
-            <li><a href="../php/menu.php?menu">Меню</a></li>
-            </ul></nav>';
+            echo '<nav class="navigation"><ul><li><a href="../php/menu.php?menu">Меню</a></li></ul></nav>';
         ?>
     </div>
     <script type="text/javascript">

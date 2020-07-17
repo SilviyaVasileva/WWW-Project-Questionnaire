@@ -12,7 +12,7 @@ require_once('quizDB.php');
 
 
 		$sql_test = "SELECT * FROM `test` JOIN `question` ON `test`.id = `question`.testId JOIN `answer` ON `question`.id = `answer`.questionId WHERE `test`.id = ".$testId;
-		$result = $conn->query($sql_test) or die("Test not found");
+		$result = $conn->prepare($sql_test);
 		$result->execute([]);
 
 		// array with all the questions and answers

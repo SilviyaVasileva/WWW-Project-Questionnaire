@@ -20,7 +20,8 @@ require_once('./php/quizDB.php')
 			echo $email." ".$password."<br />";
 
 		 	$sql = "SELECT * FROM `user` WHERE email = '".$email."' and password = '".$password."'";
-		 	$result = $conn->query($sql) or die("failed!");
+		 	$result = $conn->prepare($sql);
+		 	$result->execute([]);
 
 			while($row = $result->fetch(PDO::FETCH_ASSOC)) {
 				$_SESSION['email']=$row['email'];
